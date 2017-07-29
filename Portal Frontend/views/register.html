@@ -1,0 +1,40 @@
+<div flex layout="row">
+    <div layout="column" flex="90" flex-offset="5">
+        <div class="box1" layout="column">
+            <h2>&nbsp;  </h2>
+            <div layout="row" class="md-margin">
+                <div layout="column" flex="40" flex-offset="30" class="md-whiteframe-4dp md-padding">
+                    <h2 class="text-center" layout="row" layout-align="center center">Register</h2>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>First name</label>
+                        <md-icon md-svg-src="images/username.svg" class="name"></md-icon>
+                        <input ng-model="user.firstName" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Last name</label>
+                        <md-icon md-svg-src="images/username.svg" class="name"></md-icon>
+                        <input ng-model="user.lastName" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Username</label>
+                        <md-icon md-svg-src="images/user.svg" class="name"></md-icon>
+                        <input ng-model="user.userId" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Password</label>
+                        <md-icon md-svg-src="images/key.svg" class="password"></md-icon>
+                        <input ng-model="user.password" type="password">
+                    </md-input-container>
+                    <!-- <md-input-container layout="row" layout-align="start center"> -->
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-raised md-primary" ng-click="registerUser();">Register</md-button>
+                        <md-button class="md-raised md-warn" ng-click="goToLoginForm();">Cancel</md-button>
+                    </div>
+                    <!-- </md-input-container> -->
+                    <!-- <p> </p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div flex> </div>
+</div>

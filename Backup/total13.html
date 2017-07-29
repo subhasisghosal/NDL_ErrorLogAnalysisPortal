@@ -1,0 +1,94 @@
+<div flex layout="row">
+    <div layout="column" flex="90" flex-offset="5">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div layout="column">
+                            <h2>Total level wise count of Error/Warning</h2>
+                            <hr>
+                            <div layout="row">
+                                <div flex>
+                                    <!--
+          <div>
+            <p><strong> 
+            Levels </strong></p>
+          </div>
+-->
+                                    <!-- <div> -->
+                                        <md-input-container class="container md-block">
+                                            <!-- <label ng-hide="levels">Levels</label> -->
+                                            <label>{{selectedOptionLevel}}</label>
+                                            <!-- <label ng-if="selectedOptionLevel">{{selectedOptionLevel}}</label> -->
+                                            <md-select ng-model="selectedOptionLevel">
+                                                <md-option ng-repeat="level in levels track by $index" ng-click="setLevel(level);">{{level.name}}</md-option>
+                                                <!-- <md-button ng-repeat="level in levels track by $index" ng-click="setLevel(level);">{{level.name}}</md-button> -->
+                                            </md-select>
+                                        </md-input-container>
+                                        <!-- <div class="container">
+              <div ng-repeat="level in levels" ng-click="setLevel(level);" >
+                <div ng-class="(level.isAttempted === true)?'pressed':'nonpressed'" layout-padding layout-margin> {{level.name}} </div>
+              </div>
+            </div> -->
+                                    <!-- </div> -->
+                                </div>
+                                <div flex>
+                                    <!--
+          <div>
+            <p><strong> Error/Warning </strong></p>
+          </div>
+-->
+                                    <md-input-container class="md-block">
+                                        <label>{{selectedOptionItem}}</label>
+                                        <md-select ng-model="selectedOptionItem">
+                                            <md-option ng-repeat="item in items track by $index" ng-click="setItem(item);">{{item.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <!-- <div class="container">  -->
+                                    <!--select-->
+                                    <!-- <div ng-repeat="item in items" ng-click="setItem(item);">
+                <div ng-class="(item.isAttempted === true)?'pressed':'nonpressed'" layout-padding layout-margin> {{item.name}} </div>
+              </div> -->
+                                    <!--/select-->
+                                    <!-- </div> -->
+                                </div>
+                                <div flex layout-align="center center" layout="row" style=" background-color:#F6F5F9 ">
+                                    <md-button ng-click="submitList();" class="md-raised md-primary">Submit</md-button>
+                                </div>
+                            </div>
+                            <div>
+                                <hr>
+                                <p></p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" md-api-table">
+                            <tbody>
+                                <tr>
+                                    <th width="33%"> </th>
+                                    <th width="33%" layout-align="center center">
+                                        <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
+                                            <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                        </div>
+                                    </th>
+                                    <th width="33%"> </th>
+                                </tr>
+                                <tr ng-repeat="availableItem in availableItems">
+                                    <td>{{ availableItem.value }}</td>
+                                    <td>&nbsp;</td>
+                                    <td>{{ availableItem.level }}</td>
+                                    <td>&nbsp;</td>
+                                    <td>{{ availableItem.count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div flex> </div>
+</div>

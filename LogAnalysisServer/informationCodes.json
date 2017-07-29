@@ -1,0 +1,263 @@
+[
+    {
+        "informationCode" : "ERR_UNKNOWN_METADATA",
+        "description" : "Metadata is not in NDL’s metadata registry",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_NULL_VALUE",
+        "description" : "Value provided is null or blank",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_ENCODING",
+        "description" : "Value is not in UTF-8 encoded according to RFC3629",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_CHAR",
+        "description" : "Value contains invalid characters; e.g. \t or \r or \n",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_LATEX",
+        "description" : "Value contains invalid LaTex mathematical expression",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_SPACE_AT_EDGE",
+        "description" : "Leading or trailing space(s) found in the value",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_SPACE_MULTIPLE",
+        "description" : "Consecutive space characters found in the value",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FOUND_HTML_TAG",
+        "description" : "HTML tag found in the value",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FOUND_JS_TAG",
+        "description" : "JavaScript tag found",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FOUND_CSS_TAG",
+        "description" : "CSS style tag found",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_PARSE_JSON",
+        "description" : "Value should be a JSON; provided value can not be parsed as JSON",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_URL",
+        "description" : "Value should be an URL; provided value is not following the URL regEx",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_DATE",
+        "description" : "Value should be a date in format DD-MM-YYYY; provided value not following the regEx",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_HASPART",
+        "description" : "Value is not qualified for dc.relation.haspart",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_ISPARTOF",
+        "description" : "Value is not qualified for dc.relation.ispartof",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_RELATION",
+        "description" : "Value is not qualified for dc.relation",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_TABLEOFCONTENTS",
+        "description" : "Value is not qualified for dc.description.tableofcontents",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_YEAR",
+        "description" : "Value is not in YYYY format",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_ISBN",
+        "description" : "Value is not following pattern/regular expression for ISBN",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_ISSN",
+        "description" : "Value is not following pattern/regular expression for ISSN",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_DOI",
+        "description" : "Value is not following the pattern/regular expression for DOI",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_CITATION",
+        "description" : "Value is not following the pattern/regular expression for citation",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_PREREQUISITE",
+        "description" : "Value is not following the pattern/regular expression for dc",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_TIMEREQUIRED",
+        "description" : "Value of lrmi.timeRequired is invalid according to ISO_8601",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_INT",
+        "description" : "Value is not an integer",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_BOOL",
+        "description" : "Value is not a valid boolean value; true is valid but TRUE is invalid",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_FORMAT_STRING",
+        "description" : "Value is not a string",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_YEAR",
+        "description" : "Value is in YYYY format, but the year is from future",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_DATE",
+        "description" : "Syntactically value is valid BUT not a valid date; i.e. date from future, leap years cases",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_INVALID_INT",
+        "description" : "Syntactically correct integer; but the value is a negative number",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_CTRL_VOCAB",
+        "description" : "Value is outside NDL’s controlled vocabulary",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_CTRL_JSON_KEY",
+        "description" : "Value is a valid JSON string; but the JSON key is unknown to NDL",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_CTRL_JSON_VALUE",
+        "description" : "Value is not in the vocabulary list",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_JSON_MULTIPLE",
+        "description" : "Multiple values are combined",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_DUPLICATE_ENTRY",
+        "description" : "Duplicate entries found in JSON arrays",
+        "level" : "metadataLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "WARN_JSON_MINIFY",
+        "description" : "The specified value is a valid JSON; but not in minified format",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "WARN_INVALID_PERSON",
+        "description" : "The specified value seems to be an invalid person name",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "WARN_ALL_WORD_UPPER",
+        "description" : "All the characters are in uppercase",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "WARN_ALL_WORD_LOWER",
+        "description" : "All the characters are in lowercase",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "WARN_TEXT_LENGTH_LARGE",
+        "description" : "The length of the text is too large",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "WARN_TEXT_LENGTH_SMALL",
+        "description" : "The length of the text is too small",
+        "level" : "metadataLevel",
+        "warn_flag" : true
+    },{
+        "informationCode" : "ERR_ITEM_MANDATORY_MISSING",
+        "description" : "Mandatory fields are missing. List of missing fields will be returned",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_HIERARCHY_BROKEN",
+        "description" : "One or more values are violating the tree hierarchy. List of the missing values will be returned",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_RELATION_BROKEN",
+        "description" : "Link (dc.relation, dc.relation.references, dc.relation.replaced) broken",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_MULTIPLE_VALUES",
+        "description" : "Multiple values encountered while the field has a single-valued constraint. List of all values for the field will be returned",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_DUPLICATE_ENTRY",
+        "description" : "Same value appeared more than once in same field; e.g. dc.language.iso contains eng more than once. List of field-name and only the duplicate values will be returned",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_CROSS_DUPLICATE_ENTRY",
+        "description" : "Same values appeared in different fields; e.g. dc.title and dc.title.alternative contains same value. List of field-names and only the duplicate value will be returned",
+        "level" : "itemLevel",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_ITEM_IMPROPER_BUNDLE",
+        "level" : "itemLevel",
+        "description" : "",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_HANDLE_NO_PREFIX",
+        "level" : "sourceLevel",
+        "description" : "",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_SOURCE_DUPLICATE_HANDLE_ID",
+        "level" : "sourceLevel",
+        "description" : "",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_SOURCE_INVALID_HIERARCHY",
+        "level" : "sourceLevel",
+        "description" : "",
+        "warn_flag" : false
+    },{
+        "informationCode" : "ERR_SOURCE_XML_FORMAT",
+        "description" : "XML format does not follow the predefined structure",
+        "level" : "sourceLevel",
+        "warn_flag" : false
+    }
+]

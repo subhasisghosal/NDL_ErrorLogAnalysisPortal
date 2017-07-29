@@ -1,0 +1,58 @@
+<html>
+    <!--script src="https://code.angularjs.org/angular-1.0.0rc9.js"></script-->
+	<script src="js/angular.min.js"></script>
+    <script src="js/total.js"></script>
+    <link href="style.css" rel="stylesheet">
+
+<body ng-app="metadataapp" ng-controller="totalCtrl">
+    <div class="HeadClass"><h1>Total level wise count of Error/Warning</h1></div>
+	<div class="container">
+		<div class="horizontal">
+			<div class="vertical">
+					<div class="container"> <b>levels</b> 
+						<!--select-->
+								<br/>
+								<div ng-repeat="level in levels" ng-click="setLevel(level);" >
+								<div ng-class="(level.isAttempted === true)?'pressed':'nonpressed'">
+								{{level.value}}
+								</div>
+								</div>
+						<!--/select-->
+					</div>
+			</div>	
+			<br/>			
+			<div class="vertical">
+					<div class="container"> <b>Error/Warning</b>
+							<br/>
+						<!--select-->
+								<div ng-repeat="item in items" ng-click="setItem(item);">
+								<div ng-class="(item.isAttempted === true)?'pressed':'nonpressed'">
+								{{item.value}}
+								</div>	
+								</div>						
+						<!--/select-->
+					</div>
+			</div>
+			<div class="vertical">
+				<div>
+					<button ng-click="submitList();">Submit</button>
+				</div>
+			</div>
+		</div>
+		<div class="horizontal">
+			<div ng-if= "(availableItems.length > 0) === true" class="csvButton">
+				<button ng-click="generateCSV();">Generate CSV</button>
+			</div>
+		</div>
+		<div class="horizontal">	
+			<div class="vertical">
+					<div ng-repeat="availableItem in availableItems">
+						<!--span><!--td>{{ selectedOptionlevel }}<!--/td></span-->
+						<span><!--td-->{{ availableItem.value }}<!--/td--></span>
+						<span><!--td-->{{ availableItem.count }}<!--/td--></span>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

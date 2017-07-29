@@ -1,0 +1,45 @@
+<html>
+    <script src="https://code.angularjs.org/angular-1.0.0rc9.js"></script>
+    <script src="js/itemlevel.js"></script>
+    <link href="style.css" rel="stylesheet">
+
+<body ng-app="metadataapp" ng-controller="iCtrl">
+    <div class="HeadClass"><h1>Item Level Error</h1></div>
+	<div class="container">
+		<div class="horizontal">
+			<div class="vertical">
+					<div class="container">
+						<button ng-click="setChoice('informationCode');">InformationCode</button>
+					</div>
+					<div class="container" >
+						<button ng-click="setChoice('fieldName');">FieldName</button>
+					</div>
+			</div>
+			<div class="vertical">
+				<div>
+					<button ng-click="submitList();">Submit</button>
+				</div>
+			</div>
+		</div>
+		<div class="horizontal">
+			<div ng-if= "(availableItems.length > 0) === true" class="csvButton">
+				<button ng-click="generateCSV();">Generate CSV</button>
+			</div>
+		</div>
+		<div class="horizontal">
+			<div class="vertical" ng-if="isleftListObtained === true">
+				<div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
+				<span>{{availableOption.value}}</span> 
+				<span>{{availableOption.count}}</span>
+				</div>
+			</div>
+			<div class="vertical" ng-if="rightListObtained ===true">
+				<!--table-->
+				
+			</div>
+
+				<!--/table-->
+		</div>
+	</div>
+</body>
+</html>

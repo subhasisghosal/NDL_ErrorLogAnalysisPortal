@@ -1,0 +1,65 @@
+<html>
+    <!--script src="https://code.angularjs.org/angular-1.0.0rc9.js"></script-->
+	<script src="js/angular.min.js"></script>
+    <script src="js/metadatalevel.js"></script>
+    <link href="style.css" rel="stylesheet">
+
+<body ng-app="metadataapp" ng-controller="metadataCtrl">
+    <div class="HeadClass"><h1>Metadata Level Error</h1></div>
+	<div class="container">
+		<div class="horizontal">
+			<div class="vertical">
+					<div class="container">
+						<button ng-click="setChoice('informationCode');">InformationCode</button>
+					</div>
+					<div class="container" >
+						<button ng-click="setChoice('fieldName');">FieldName</button>
+					</div>
+			</div>
+			<div class="vertical">
+				<div>
+					<button ng-click="submitList();">Submit</button>
+				</div>
+			</div>
+		</div>
+		<div class="horizontal">
+			<div ng-if= "(availableItems.length > 0) === true" class="csvButton">
+				<button ng-click="generateCSV();">Generate CSV</button>
+			</div>
+		</div>
+		<div class="horizontal">
+			<div class="vertical" >
+				<div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
+				<div ng-class="(availableOption.isAttempted === true)?'pressed':'nonpressed'">
+				<span>{{availableOption.value}}</span> 
+				<span>{{availableOption.count}}</span>
+				</div>
+				</div>
+			</div>
+			<div class="vertical" ng-if="rightListObtained === true">
+				<!--table-->
+				<div ng-if="true">
+					<div ng-repeat="availableItem in availableItems">
+					<!--tr-->
+					<!--Need to implement table structure using span and div-->
+					<div ng-if="flag === true">
+						<span><!--td-->{{availableItem.fieldName}}<!--/td--></span>
+						<!--span><!--td>{{availableItem.informationCode}}<--/td></span-->
+						<span><!--td-->{{availableItem.fieldvalue}}<!--/td--></span>
+						<span><!--td-->{{availableItem.handleId}}<!--/td--></span>
+					</div>
+					<div ng-if="flag === false" >
+						<span><!--td-->{{availableItem.informationCode}}<!--/td--></span>
+						<span><!--td-->{{availableItem.fieldvalue}}<!--/td--></span>
+						<span><!--td-->{{availableItem.handleId}}<!--/td--></span>
+					</div>
+					<!--/tr-->
+					</div>
+				</div>
+
+				<!--/table-->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

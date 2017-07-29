@@ -1,0 +1,125 @@
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/total.js"></script>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <!-- Your application bootstrap  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-app="logAnalysisApp" ng-cloak layout="column" ng-controller="totalCtrl">
+    <!--
+    Your HTML content here
+  -->
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <md-toolbar class="md-whiteframe-5dp topbar" layout="row">
+        <div flex="20" layout-padding> <img src="images/logo-lg-green.svg" alt="" /> </div>
+        <div flex="80"> </div>
+    </md-toolbar>
+    <div flex layout="row">
+        <div layout="column" flex="90" flex-offset="5">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div layout="column">
+                                <h2>Total level wise count of Error/Warning</h2>
+                                <hr>
+                                <div layout="row">
+                                    <div flex>
+                                        <!--
+          <div>
+            <p><strong> 
+            Levels </strong></p>
+          </div>
+-->
+                                        <div>
+                                            <md-input-container class="container md-block">
+                                                <label>Levels</label>
+                                                <md-select ng-model="levels">
+                                                    <md-option ng-repeat="level in levels" ng-click="setLevel(level);">{{level.name}}</md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                            <!-- <div class="container">
+              <div ng-repeat="level in levels" ng-click="setLevel(level);" >
+                <div ng-class="(level.isAttempted === true)?'pressed':'nonpressed'" layout-padding layout-margin> {{level.name}} </div>
+              </div>
+            </div> -->
+                                        </div>
+                                    </div>
+                                    <div flex>
+                                        <!--
+          <div>
+            <p><strong> Error/Warning </strong></p>
+          </div>
+-->
+                                        <md-input-container class="md-block">
+                                            <label>Error/Warning</label>
+                                            <md-select ng-model="items">
+                                                <md-option ng-repeat="item in items" ng-click="setItem(item);">{{item.name}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <!-- <div class="container">  -->
+                                        <!--select-->
+                                        <!-- <div ng-repeat="item in items" ng-click="setItem(item);">
+                <div ng-class="(item.isAttempted === true)?'pressed':'nonpressed'" layout-padding layout-margin> {{item.name}} </div>
+              </div> -->
+                                        <!--/select-->
+                                        <!-- </div> -->
+                                    </div>
+                                    <div flex layout-align="center center" layout="row" style=" background-color:#F6F5F9 ">
+                                        <md-button ng-click="submitList();" class="md-raised md-primary">Submit</md-button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <hr>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" md-api-table">
+                                <tbody>
+                                    <tr>
+                                        <th width="33%"> </th>
+                                        <th width="33%" layout-align="center center">
+                                            <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
+                                                <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                            </div>
+                                        </th>
+                                        <th width="33%"> </th>
+                                    </tr>
+                                    <tr ng-repeat="availableItem in availableItems">
+                                        <td>{{ availableItem.value }}</td>
+                                        <td>&nbsp;</td>
+                                        <td>{{ availableItem.level }}</td>
+                                        <td>&nbsp;</td>
+                                        <td>{{ availableItem.count }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div flex> </div>
+    </div>
+    <!--<div class="footer" layout-align="center center" layout="row">
+  <div>&copy; Copyright 2017 National Digital Library of India</div>
+</div>-->
+</body>
+
+</html>

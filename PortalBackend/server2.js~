@@ -1,0 +1,55 @@
+var http = require('http');
+
+function fetchData(queryStatement,url,collection_name,format,results){
+	var mongodb = require('mongodb');
+	var mongoClient = mongodb.MongoClient;
+
+	mongoClient.connect(url, function (err, db){
+ 		if(err){
+       		 	console.log('failed');
+        		}else{  
+				console.log('connection established');
+
+				var collection = db.collection(collection_name);
+
+				collection.count(function(err, count){
+					console.log("There are "+ count + " records");
+				});
+
+				/* basic query statement */
+				var sortField = { "handle" : -1};
+
+				/* Printing data from cursor each */
+				collection.find(queryStatement).sort(sortField).each(function (err, doc){
+					//if(doc!= null)	console.log("Doc from each docs ");
+				console.dir(doc);
+					results.push(doc);							
+				});
+
+				/* closing the db connection*/
+				db.close();
+        		}
+		});
+	return results;
+}
+function onRequest(request, response){
+	var url = 'mongodb://localhost:27017/test';
+	var collection_name = 'log_error';
+	var format = require('util').format;
+	var results1 = JSON.stringify(fetchData({"level" : "metadataLevel"},url,collection_name,format,results));
+	var results2= JSON.stringify(fetchData({"level" : "metadataLevel"},url,collection_name,format,results));
+	
+	response.writeHead(200,{'Content-Type':'application/json'});
+	console.log(request.url);
+
+	if(request.url=='/metadatalevel'){
+		response.write();
+	}
+	else{ 
+		if(request.url == '/itemlevel')
+			response.write(JSON.stringify(fetchData({"level" : "itemLevel"},url,collection_name,format,results)));	
+	}
+	response.end();
+}
+
+http.createServer(onRequest).listen(8000);

@@ -1,0 +1,1013 @@
+connection established
+There are 30007 records
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 91 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 92 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 93 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 94 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 95 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 96 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 97 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 98 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 99 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 100 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 101 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 102 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 103 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 104 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 105 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 106 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 107 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 108 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 109 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 110 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 111 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 112 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 113 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 114 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 115 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 116 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 117 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 118 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 119 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 120 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 121 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 122 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 123 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 124 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 125 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 126 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 127 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 128 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 129 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 130 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 131 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 132 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 133 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 134 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 135 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 136 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 137 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 138 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 139 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 140 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 141 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 142 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 143 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 144 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 145 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 146 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 147 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 148 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 149 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 150 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 151 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 152 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 153 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 154 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 155 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 156 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 157 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 158 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 159 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 160 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 161 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 162 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 163 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 164 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 165 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 166 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 167 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 168 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 169 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 170 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 171 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 172 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 173 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 174 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 175 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 176 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 177 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 178 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 179 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 180 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 181 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 182 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 183 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 184 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 185 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 186 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 187 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 188 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 189 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 190 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+Doc from each metadataLevel docs 
+{ _id: 
+   ObjectID {
+     _bsontype: 'ObjectID',
+     id: Buffer [ 88, 216, 175, 116, 252, 3, 188, 93, 150, 201, 115, 191 ] },
+  fieldName: 'dc.language.iso',
+  fieldValue: 'en',
+  informationCode: 'ERR_OUT_OF_CTRL_VOCAB',
+  handle: '12345',
+  level: 'metadataLevel' }
+undefined

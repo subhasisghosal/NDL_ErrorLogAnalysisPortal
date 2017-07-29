@@ -1,0 +1,37 @@
+var mongodb = require('mongodb');
+var mongoClient= mongodb.MongoClient;
+
+var format = require('util').format;
+
+var url = 'mongodb://localhost:27017/test';
+
+var results;
+	mongoClient.connect(url, function (err, db){
+ 		if(err){
+       		 	console.log('failed');
+        		}else{  
+				console.log('connection established');
+
+				var collection = db.collection('log_error');
+
+				collection.count(function(err, count){
+					console.log("There are "+ count + " records");
+				});
+
+				/* basic query statement */
+				var queryStatement= {"level":"metadataLevel"};
+				var sortField = { "handle" : -1};
+
+				/* Printing data from cursor each */
+				collection.find(queryStatement).sort(sortField).each(function (err, doc){
+					if(doc!= null)	console.log("Doc from each metadataLevel docs ");
+				console.dir(doc);
+					results.push_back(doc);							
+				});
+
+				/* closing the db connection*/
+				db.close();
+        		}
+		});
+
+

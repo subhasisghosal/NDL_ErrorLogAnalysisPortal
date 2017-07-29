@@ -1,0 +1,75 @@
+<div flex layout="row">
+    <div layout="column" flex="90" flex-offset="5">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div layout="column">
+                            <h2>Total level wise count of Error/Warning</h2>
+                            <hr>
+                            <div layout="row">
+                                <div flex>
+                                    <md-input-container class="md-block">
+                                        <label>{{selectedLevel}}</label>
+                                        <md-select ng-model="selectedLevel">
+                                            <md-option ng-repeat="level in levels track by $index" ng-click="setLevel(level);">{{level.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="md-block">
+                                        <label>{{selectedItem}}</label>
+                                        <md-select ng-model="selectedItem">
+                                            <md-option ng-repeat="item in items track by $index" ng-click="setItem(item);">{{item.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex layout-align="center center" layout="row" style=" background-color:#F6F5F9 ">
+                                    <md-button ng-click="submitList();" class="md-raised md-primary">Submit</md-button>
+                                </div>
+                            </div>
+                            <div>
+                                <hr>
+                                <p></p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" md-api-table">
+                            <tbody>
+                                <tr>
+                                    <th width="33%"> </th>
+                                    <th>&nbsp;</th>
+                                    <th width="34%" layout-align="center center">
+                                        <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
+                                            <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                        </div>
+                                    </th>
+                                    <th>&nbsp;</th>
+                                    <th width="33%"> </th>
+                                </tr>
+                                <tr ng-if="(availableItems.length > 0)">
+                                    <th>Information Code</th>
+                                    <th>&nbsp;</th>
+                                    <th>Level</th>
+                                    <th>&nbsp;</th>
+                                    <th>Count</th>
+                                </tr>
+                                <tr ng-repeat="availableItem in availableItems">
+                                    <td>{{ availableItem.value }}</td>
+                                    <td>&nbsp;</td>
+                                    <td>{{ availableItem.level }}</td>
+                                    <td>&nbsp;</td>
+                                    <td>{{ availableItem.count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div flex> </div>
+</div>

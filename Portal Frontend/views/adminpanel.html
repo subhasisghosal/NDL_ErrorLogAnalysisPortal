@@ -1,0 +1,235 @@
+<div flex layout="row">
+    <div layout="column" flex="90" flex-offset="5">
+        <div class=" " layout="column">
+            <h2>&nbsp; </h2>
+            <div layout="row" class="md-margin">
+                <div layout="column" flex="80" flex-offset="10" class="md-whiteframe-4dp md-padding whitebg">
+                    <div ng-cloak>
+                        <md-content>
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab label="Source">
+                                    <md-content class="md-padding">
+                                        <md-tabs md-dynamic-height md-border-bottom>
+                                            <md-tab label="Add Source">
+                                                <md-content class="md-padding">
+                                                    <div layout="row">
+                                                        <h4 flex="90">Create Source</h4>
+                                                        <div flex="10">
+                                                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="addSource()" layout-align="end center">
+                                                                <md-icon md-svg-src="images/plus-black-symbol.svg"></md-icon>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                    <form ng-submit="$event.preventDefault()">
+                                                        <div layout-gt-sm="row" ng-repeat="source in sources">
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>Source Code</label>
+                                                                <input id="srcode_{{$index}}" ng-model="source.sourceCode">
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>Source Name</label>
+                                                                <input id="srcname_{{$index}}" ng-model="source.sourceName">
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout="row" layout-align="right">
+                                                            <md-button class="md-raised md-primary" ng-click="createSource()">Save</md-button>
+                                                        </div>
+                                                        <p> </p>
+                                                    </form>
+                                                </md-content>
+                                            </md-tab>
+                                            <md-tab label="Modify Source">
+                                                <md-content class="md-padding" layout-align="center center">
+                                                    <div flex>
+                                                        <md-button class="md-raised md-primary" ng-click="getSources()">Refresh</md-button>
+                                                    </div>
+                                                    <md-table-container flex>
+                                                      <table flex md-table md-row-select multiple ng-model="selected" md-progress="promise" class="md-api-table" ng-if="sourceInfo.length > 0">
+                                                        <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                                                          <tr md-row>
+                                                            <th md-column>Source Code</th>
+                                                            <th md-column>Source Name</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody md-body>
+                                                          <tr md-row md-select="sourceInfo" md-select-id="name" md-auto-select ng-repeat="source in sourceInfo">
+                                                            <td md-cell>{{source.sourceCode}}</td>
+                                                            <td md-cell>{{source.sourceName}}</td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </md-table-container>
+                                                </md-content>
+                                            </md-tab>
+                                        </md-tabs>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="User">
+                                    <md-content class="md-padding">
+                                        <md-tabs md-dynamic-height md-border-bottom>
+                                            <md-tab label="Add User">
+                                                <md-content class="md-padding">
+                                                    <div layout="row">
+                                                        <h4 flex="90">Create User</h4>
+                                                        <div flex="10">
+                                                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="addUser()" layout-align="end center">
+                                                                <md-icon md-svg-src="images/plus-black-symbol.svg"></md-icon>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                    <form ng-submit="$event.preventDefault()">
+                                                        <div layout-gt-sm="row" ng-repeat="user in users">
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>User ID</label>
+                                                                <input id="userid_{{$index}}" ng-model="user.userId">
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>Password</label>
+                                                                <input id="passwd_{{$index}}" ng-model="user.password" type="password">
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>First Name</label>
+                                                                <input id="fname_{{$index}}" ng-model="user.firstName">
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex-gt-sm>
+                                                                <label>Last Name</label>
+                                                                <input id="lname_{{$index}}" ng-model="user.lastName">
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block">
+                                                                <label>Role</label>
+                                                                <md-select id="role_{{$index}}" name="type" ng-model="user.role">
+                                                                    <md-option value="cs">CS</md-option>
+                                                                    <md-option value="ls">LS</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout="row" layout-align="right">
+                                                            <md-button class="md-raised md-primary" ng-click="registerUser()">Save</md-button>
+                                                        </div>
+                                                        <p> </p>
+                                                    </form>
+                                                </md-content>
+                                            </md-tab>
+                                            <md-tab label="Modify User">
+                                                <md-content class="md-padding">
+                                                    <div layout="column">
+                                                        <div layout="row" layout-align="end center">
+                                                            <md-button class="md-raised md-primary" ng-click="getUsers()">Refresh</md-button>
+                                                        </div>
+                                                        <md-table-container layout="row">
+                                                          <table flex="100" md-table md-row-select multiple ng-model="selected" md-progress="promise" class="md-api-table" ng-if="userInfo.length > 0">
+                                                            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                                                              <tr md-row>
+                                                                <th md-column md-numeric>User Id</th>
+                                                                <th md-column md-numeric>First Name</th>
+                                                                <th md-column md-numeric>Last name</th>
+                                                                <th md-column md-numeric>Role</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody md-body>
+                                                              <tr md-row md-select="userInfo" md-select-id="name" md-auto-select ng-repeat="user in userInfo">
+                                                                <td md-cell>{{user.userId}}</td>
+                                                                <td md-cell>{{user.firstName}}</td>
+                                                                <td md-cell>{{user.lastName}}</td>
+                                                                <td md-cell>{{user.role}}</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </md-table-container>
+                                                    </div>
+                                                </md-content>
+                                            </md-tab>
+                                        </md-tabs>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="Assignment">
+                                    <md-content class="md-padding">
+                                        <md-tabs md-dynamic-height md-border-bottom>
+                                            <md-tab label="Assign Task">
+                                                <md-content class="md-padding">
+                                                    <div layout="row">
+                                                        <h4 flex="90">Assign Task</h4>
+                                                        <div flex="10">
+                                                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="addAssignments()" md-direction="right">
+                                                                <md-icon md-svg-src="images/plus-black-symbol.svg"></md-icon>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                    <form ng-submit="$event.preventDefault()">
+                                                        <div layout-gt-sm="row" ng-repeat="assignment in assignments">
+                                                            <md-input-container class="md-block" flex>
+                                                                <label>User</label>
+                                                                <md-select name="user" ng-model="assignment.user" ng-click="getUsers()">
+                                                                    <md-option ng-repeat="user in userInfo" value="{{user.userId}}">{{user.firstName}} {{user.lastName}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex>
+                                                                <label>Source</label>
+                                                                <md-select name="source" ng-model="assignment.source" ng-click="getSources()">
+                                                                    <md-option ng-repeat="source in sourceInfo" value="{{source.sourceCode}}">{{source.sourceName}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout="row" layout-align="right">
+                                                            <md-button class="md-raised md-primary" ng-click="assignTask()">Assign</md-button>
+                                                        </div>
+                                                        <p> </p>
+                                                    </form>
+                                                </md-content>
+                                            </md-tab>
+                                            <md-tab label="Modify Assignments">
+                                                <md-content class="md-padding">
+                                                    <div layout="row">
+                                                        <h4>Assignment Report</h4>
+                                                    </div>
+                                                    <div layout="column">
+                                                        <div layout="row">
+                                                            <md-radio-group ng-model="choice" layout="row" layout-align="start center" flex ng-change="populateField(choice)">
+                                                              <md-radio-button value="user" class="md-primary">User wise</md-radio-button>
+                                                              <md-radio-button value="source" class="md-primary">Data Source wise</md-radio-button>
+                                                            </md-radio-group>
+                                                            <!-- <div layout-align="end center">
+                                                                <md-button class="md-raised md-primary" ng-click="getAssignments()">Refresh</md-button>
+                                                            </div> -->
+                                                        </div>
+                                                        <div layout="row">
+                                                            <md-input-container class="md-block" flex>
+                                                                <label ng-if="choice=='user'">User</label>
+                                                                <label ng-if="choice=='source'">Source</label>
+                                                                <md-select name="type" ng-model="assignment.user">
+                                                                    <md-option ng-repeat="item in assItems" value="{{item.userId}}" ng-if="choice=='user'" ng-click="getAssignments(choice, item.userId)">{{item.firstName}}</md-option>
+                                                                    <md-option ng-repeat="item in assItems" value="{{item.sourceName}}" ng-if="choice=='source'" ng-click="getAssignments(choice, item.sourceCode)">{{item.sourceName}}</md-option>
+                                                                </md-select>      
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex>
+                                                                <label ng-if="choice=='user'">Source</label>
+                                                                <label ng-if="choice=='source'">User</label>
+                                                                <md-select name="type1" ng-model="assignment1.user">
+                                                                    <md-option ng-repeat="item1 in items" value="{{item1.code}}" ng-if="choice=='user'" ng-click='showActiveness(item1)'>{{item1.code}}</md-option>
+                                                                    <md-option ng-repeat="item1 in items" value="{{item1.uId}}" ng-if="choice=='source'" ng-click='showActiveness(item1)'>{{item1.uId}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" layout-align="end center">
+                                                                <md-switch class="md-primary" aria-label="Active/Not" ng-model="ifActive.isActive" ng-change="onChange(ifActive)">
+                                                                    Active: {{ ifActive.isActive }}
+                                                                </md-switch>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex>
+                                                            <md-chips ng-model="chips" readonly="true" md-removable="true" md-on-remove="removeChip($index)"></md-chips>
+                                                        </div>
+                                                    </div>
+                                                </md-content>
+                                            </md-tab>
+                                        </md-tabs>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div flex> </div>
+</div>

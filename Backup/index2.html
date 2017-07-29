@@ -1,0 +1,90 @@
+<html lang="en" >
+<script src="https://code.angularjs.org/angular-1.0.0rc9.js"></script>
+<script src="upload.js"></script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <!-- Your application bootstrap  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+
+
+<body ng-app="app" ng-controller="FileUploadCtrl" ng-cloak layout="column">
+<!--
+  <md-toolbar class="md-whiteframe-5dp topbar"  layout="row">
+  <div flex="20" layout-padding> <img src="images/logo-lg-green.svg" alt=""/> </div>
+  <div flex="80"> </div>
+  </md-toolbar>
+
+  <div flex layout="row">   
+       <div layout="column" flex="90" flex-offset="5"  >
+      <div class="box1" layout="column">
+         <h2>Select a File to Upload</h2>
+        
+          <hr>
+-->
+       
+ 
+     
+<form name="testForm" layout="column">
+    <lf-ng-md-file-input name="files00" lf-files="files09" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+    <md-button type="button" ng-disabled="testForm.$invalid" class="md-raised md-primary" ng-click="api09.removeAll()">Submit</md-button>
+    <div class="row">
+        <label for="fileToUpload">Select a File to Upload</label><br />
+        <input type="file" ng-model-instant id="fileToUpload" name="filename" multiple onchange="angular.element(this).scope().setFiles(this)" />
+    </div>
+    <div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+    <div ng-show="files.length">
+        <div ng-repeat="file in files.slice(0)">
+            <span>{{file.webkitRelativePath || file.name}}</span>
+            (<span ng-switch="file.size > 1024*1024">
+                <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+            </span>)
+        </div>
+        <input type="button" ng-click="uploadFile()" value="Upload" />
+        <div ng-show="progressVisible">
+            <div class="percent">{{progress}}%</div>
+            <div class="progress-bar">
+                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+            </div>
+        </div>
+    </div>
+</form>
+     
+     
+     
+<!--
+      </div>
+      
+     
+    </div>
+-->
+ <div flex>   </div>
+<!--  </div>-->
+ 
+      <div class="footer" layout-align="center center" layout="row">
+       <div>&copy; Copyright 2017 National Digital Library of India</div>
+      </div>
+  
+  
+  
+ 
+<!--   <script src="js/app.js"></script>-->
+ 
+  
+  
+</body>
+</html>

@@ -1,0 +1,113 @@
+var express = require('express')
+var app = express()
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+var AdmZip = require('adm-zip');
+var fileUpload = require('express-fileupload')
+app.use(fileUpload())
+
+var fs = require('fs')
+var unzip = require('unzip')
+
+var itemSchema = mongoose.Schema({
+	handle: String,
+	informationCode: String,
+	fieldValue: String,
+	fieldName: String,
+	level: String
+})
+
+//module.exports = itemDemo
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.json()) // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
+
+// data retrieval
+app.post('/api/metadatalevel', function (req, res) {
+	var collectionName = req.body.collectionName
+	console.log(collectionName)
+	var itemDemo = mongoose.model('itemDemo', itemSchema, collectionName)
+	var qs_metadata = {"level":"metadataLevel"}
+	// get the items
+	itemDemo.find(qs_metadata, function(err, item) {
+	  if (err) throw err;
+
+	  // object of the item
+	  //console.log(JSON.stringify(item));
+	  var resObj = {
+	  	items:[]
+	  }
+	  
+	  for(a in item){
+	  	console.log(item[a])
+	  	resObj.items.push({
+	  		handleId: item[a].handle,
+			informationCode: item[a].informationCode,
+			fieldvalue: item[a].fieldValue,
+			fieldName: item[a].fieldName,
+			level: item[a].level
+	  	})
+	  }
+	  res.send(resObj)
+	}); 	
+})
+
+// file upload
+app.post('/api/file', function (req, res) {
+	if (!req.files)
+    		return res.status(400).send('No files were uploaded.');
+ 
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
+  	let sampleFile = req.files.uploadedFile;
+ 	//console.dir(sampleFile)
+ 	uploadPath = '/home/subhayan/log_analysis/upload/'+sampleFile.name
+ 	extractPath = 'home/subhayan/log_analysis/upload/unzipped/'
+  // Use the mv() method to place the file somewhere on your server
+  	sampleFile.mv(uploadPath, function(err) {
+    	if (err)
+      		return res.status(500).send(err);
+      	//fs.createReadStream(uploadPath).pipe(unzip.Extract({ path: extractPath }));
+    	res.send('File uploaded!');
+  	});
+  	//var readStream = fs.createReadStream(uploadPath);
+	//var writeStream = fstream.Writer(extractPath);
+ 
+	//readStream
+  	//	.pipe(unzip.Parse())
+  	//	.pipe(writeStream)
+  	//var out = fs.createWriteStream('/home/subhayan/log_analysis/upload/'+sampleFile.name);
+  	//req.pipe(out);
+  	//req.on('end',function(){
+  	//	var zip = new AdmZip('/home/subhayan/log_analysis/upload/'+sampleFile.name)
+  	//	var zipEntries = zip.getEntries(); // an array of ZipEntry records 
+ 	//	zipEntries.forEach(function(zipEntry) {
+        //		console.log(zipEntry.toString('utf8')); // outputs zip entries information 
+    	//	});
+  	//	zip.extractAllTo("/home/subhayan/log_analysis/upload/unzipped/", true);
+  	//})
+  	//res.send('File uploaded!');
+  	var download = function(filename, url) {
+		var tmpFilePath = "assets/tmp/" + filename + ".zip"
+		http.get(url, function(response) {
+		 	response.on('data', function (data) {
+		 		fs.appendFileSync(tmpFilePath, data)
+		 	});
+		 	response.on('end', function() {
+		 		var zip = new AdmZip(tmpFilePath)
+		 		zip.extractAllTo("assets/extracted/" + filename)
+		 		fs.unlink(tmpFilePath)
+			})
+		});
+	}
+
+	for (var i = 0; i < objectsToDownload.length; i++) {
+		download(objectsToDownload[i].filename, objectsToDownload[i].url)
+	}
+})
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})
