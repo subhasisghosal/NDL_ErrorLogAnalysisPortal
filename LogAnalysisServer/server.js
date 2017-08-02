@@ -747,7 +747,7 @@ app.get('/admin/getsources', function(req, res) {
     dataSource.find(function(err, items) {
         console.log(items)
         res.send(items)
-    })
+    }).sort('sourceCode')
 })
 
 app.post('/admin/adduser', function(req, res) {
@@ -802,7 +802,7 @@ app.get('/admin/getusers', function(req, res) {
     userDemo.find(function(err, items) {
         console.log(items)
         res.send(items)
-    })
+    }).sort('userId')
 })
 
 app.post('/admin/assigntask', function(req, res) {
@@ -922,6 +922,28 @@ app.post('/admin/deleteAssignment', function(req, res) {
         })
     })
 })
+
+app.post('/admin/deleteSource', function(req, res) {
+    var source = req.body.sourceCode
+    var dataSource = mongoose.model('dataSource', dataSourceSchema, 'dataSources')
+    dataSource.find({'sourceCode':source}).remove(function(err, items) {
+        console.log(items)
+        res.send("Source Deleted")
+    })
+})
+
+app.post('/admin/editSource', function(req, res) {})
+
+app.post('/admin/deleteUser', function(req, res) {
+    var user = req.body.userId
+    var userDemo = mongoose.model('user', userSchema, 'userMaster')
+    userDemo.find({'userId':user}).remove(function(err, items) {
+        console.log(items)
+        res.send("User Deleted")
+    })
+})
+
+app.post('/admin/editUser', function(req, res) {})
 
 app.get('/api/file', function(req, res) {
     sess = req.session

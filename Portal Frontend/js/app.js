@@ -31,6 +31,7 @@ logApp.config(['$routeProvider', '$compileProvider','$mdThemingProvider', functi
 
 logApp.constant('config', {
 	apiUrl:'http://10.17.14.26:8080',
-	serverUrl:'http://10.17.14.26:3000'
+	// serverUrl:'http://10.17.14.26:3000'
+	serverUrl:'http://localhost:3000'
 })
 

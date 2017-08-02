@@ -172,3 +172,13 @@ border-radius: 4px;
     background-color: rgb(63, 81, 181);
     color: #fff;
 }
+
+.md-button.md-cornered {
+    border-radius: 15px;
+}
+
+.md-small-button {
+    /*min-width: 20%;*/
+    min-height: 1%;
+    margin: 0px 4px 0px 4px;
+}

@@ -10,6 +10,7 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
     $scope.chips = []
     $scope.backupChip = []
     $scope.removal = {}
+    $scope.editFlag = []
 
     $scope.onChange = function(cbState) {
         $scope.ifActive.isActive = cbState.isActive;
@@ -186,6 +187,33 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
                 delete $scope.removal.userId
             if ($scope.removal.removeId)
                 delete $scope.removal.source
+        })
+    }
+
+    $scope.editUser = function(index){
+        console.log("Selected User for Edit: "+index)
+    }
+
+    $scope.deleteUser = function(index){
+        console.log("Selected User for Delete is: "+JSON.stringify($scope.userInfo[index]))
+        var responsePromise = $http.post(config.serverUrl + "/admin/deleteUser", {'userId':$scope.userInfo[index].userId})
+        responsePromise.then(function(response) {
+            delete $scope.userInfo[index]
+            console.log(response)
+        })
+    }
+
+    $scope.editSource = function(index){
+        console.log("Selected Source for Edit: "+index)
+        $scope.editFlag[index] = true
+    }
+
+    $scope.deleteSource = function(index){
+        console.log("Selected Source for Delete is: "+JSON.stringify($scope.sourceInfo[index]))
+        var responsePromise = $http.post(config.serverUrl + "/admin/deleteSource", {'sourceCode':$scope.sourceInfo[index].sourceCode})
+        responsePromise.then(function(response) {
+            delete $scope.sourceInfo[index]
+            console.log(response)
         })
     }
 });

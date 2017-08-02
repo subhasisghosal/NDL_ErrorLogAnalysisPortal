@@ -38,23 +38,28 @@
                                                     </form>
                                                 </md-content>
                                             </md-tab>
-                                            <md-tab label="Modify Source">
+                                            <md-tab label="Modify Source" ng-click="getSources()">
                                                 <md-content class="md-padding" layout-align="center center">
                                                     <div flex>
-                                                        <md-button class="md-raised md-primary" ng-click="getSources()">Refresh</md-button>
+                                                        <md-button class="md-raised md-primary" >Refresh</md-button>
                                                     </div>
                                                     <md-table-container flex>
                                                       <table flex md-table md-row-select multiple ng-model="selected" md-progress="promise" class="md-api-table" ng-if="sourceInfo.length > 0">
-                                                        <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                                                        <thead md-head md-order="query.order">
                                                           <tr md-row>
                                                             <th md-column>Source Code</th>
                                                             <th md-column>Source Name</th>
                                                           </tr>
                                                         </thead>
                                                         <tbody md-body>
-                                                          <tr md-row md-select="sourceInfo" md-select-id="name" md-auto-select ng-repeat="source in sourceInfo">
+                                                          <tr md-row md-select="sourceInfo" md-select-id="name" md-auto-select ng-repeat="source in sourceInfo" ng-if="source">
                                                             <td md-cell>{{source.sourceCode}}</td>
-                                                            <td md-cell>{{source.sourceName}}</td>
+                                                            <td md-cell ng-if="!editFlag[$index]">{{source.sourceName}}</td>
+                                                            <td md-cell ng-if="editFlag[$index]"><input id="srcname_{{$index}}" ng-model="source.sourceName"></td>
+                                                            <td md-cell>
+                                                                <md-button ng-if="!editFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editSource($index)">Edit</md-button><md-button ng-if="editFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveSource($index)">Save</md-button>
+                                                            </td>
+                                                            <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteSource($index)">Delete</md-button></td>
                                                           </tr>
                                                         </tbody>
                                                       </table>
@@ -127,11 +132,15 @@
                                                               </tr>
                                                             </thead>
                                                             <tbody md-body>
-                                                              <tr md-row md-select="userInfo" md-select-id="name" md-auto-select ng-repeat="user in userInfo">
+                                                              <tr md-row md-select="userInfo" md-select-id="name" md-auto-select ng-repeat="user in userInfo" ng-if="user">
                                                                 <td md-cell>{{user.userId}}</td>
                                                                 <td md-cell>{{user.firstName}}</td>
                                                                 <td md-cell>{{user.lastName}}</td>
                                                                 <td md-cell>{{user.role}}</td>
+                                                                <td md-cell>
+                                                                    <md-button ng-if="!editFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editUser($index)">Edit</md-button><md-button ng-if="editFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveUser($index)">Save</md-button>
+                                                                </td>
+                                                                <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteUser($index)">Delete</md-button></td>
                                                               </tr>
                                                             </tbody>
                                                           </table>
