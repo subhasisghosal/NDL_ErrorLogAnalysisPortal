@@ -11,6 +11,7 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
     $scope.backupChip = []
     $scope.removal = {}
     $scope.editFlag = []
+    $scope.editUserFlag = []
 
     $scope.onChange = function(cbState) {
         $scope.ifActive.isActive = cbState.isActive;
@@ -82,8 +83,8 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
         var responsePromise = $http.post(config.serverUrl + "/admin/adduser", data);
         responsePromise.then(function(response) {
             console.log(response)
-            $scope.users = []
-            // $scope.$apply()
+            $scope.users = [{}]
+            $scope.$apply()
         })
     }
 
@@ -191,7 +192,17 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
     }
 
     $scope.editUser = function(index){
-        console.log("Selected User for Edit: "+index)
+        console.log("Selected User for Edit: "+JSON.stringify($scope.userInfo[index]))
+        $scope.editUserFlag[index] = true
+    }
+
+    $scope.saveUser = function(index){
+        console.log("Saved User for Edit: "+JSON.stringify($scope.userInfo[index]))
+        $http.post(config.serverUrl + "/admin/editUser", $scope.userInfo[index])
+        .then(function(response) {
+            console.log(response)
+            $scope.editUserFlag[index] = false
+        })
     }
 
     $scope.deleteUser = function(index){
@@ -204,8 +215,17 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
     }
 
     $scope.editSource = function(index){
-        console.log("Selected Source for Edit: "+index)
+        console.log("Selected Source for Edit: "+JSON.stringify($scope.sourceInfo[index]))
         $scope.editFlag[index] = true
+    }
+
+    $scope.saveSource = function(index){
+        console.log("Saved Source for Edit: "+JSON.stringify($scope.sourceInfo[index]))
+        $http.post(config.serverUrl + "/admin/editSource", $scope.sourceInfo[index])
+        .then(function(response) {
+            console.log(response)
+            $scope.editFlag[index] = false
+        })
     }
 
     $scope.deleteSource = function(index){

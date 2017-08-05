@@ -11,31 +11,33 @@
                                     <md-content class="md-padding">
                                         <h4>View reports</h4>
                                         <form ng-submit="$event.preventDefault()">
-                                            <md-autocomplete ng-disabled="isDisabled" md-no-cache="noCache" md-selected-item="selectedItem" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in querySearch(searchText)" md-item-text="item.display" md-min-length="0" placeholder="Select a Data Source" required>
-                                                <md-item-template> <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span> </md-item-template>
-                                                <md-not-found> No sources matching "{{searchText}}" were found. <a ng-click="newState(searchText)">Create a new one!</a> </md-not-found>
-                                            </md-autocomplete>
+                                            <md-input-container class="md-block" flex>
+                                                <label>Source</label>
+                                                <md-select name="source" ng-model="file.source">
+                                                    <md-option ng-repeat="source in sourceList" value="{{source}}" ng-click="getBatches(source)">{{source}}</md-option>
+                                                </md-select>
+                                            </md-input-container>
                                             <br>
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
-                                                <md-select name="type" ng-model="project.type" required>
-                                                    <md-option value="app">Batch 1 </md-option>
-                                                    <md-option value="web">Batch 2</md-option>
+                                                <!--<input required type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>-->
+                                                <md-select name="type" ng-model="file.batch" required>
+                                                    <md-option ng-repeat="batch in selectedBatches" value="{{batch}}" ng-click="getComments(file.source,batch)">{{batch}}</md-option>
                                                 </md-select>
                                             </md-input-container>
                                             <md-input-container class="md-block">
                                                 <label>Comments about the log files</label>
-                                                <textarea ng-readonly="true" ng-model="user.biography" md-maxlength="100" rows="3" md-select-on-focus>How many roads mus a man walk down
+                                                <textarea ng-readonly="true" ng-model="comments" rows="3" md-select-on-focus>
                                                 </textarea>
                                             </md-input-container>
                                             <div layout="row" layout-align="left">
-                                                <md-button class="md-raised md-primary">View</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="showLogReports()">View</md-button>
                                             </div>
                                             <p> </p>
                                         </form>
                                     </md-content>
                                 </md-tab>
-                                <md-tab label="Upload log">
+                                <md-tab label="Upload log" ng-if="showTabs">
                                     <md-content class="md-padding" id="popupContainer" ng-cloak>
                                         <h4>Upload a zip file</h4>
                                         <form ng-submit="$event.preventDefault()">
@@ -62,8 +64,7 @@
                                             <br>
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
-                                                <input required type="number" step="any" name="rate" ng-model="file.batch" min="1"
-               max="100"/>
+                                                <input required type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>
                                                 <!-- <md-select name="type" ng-model="project.type" required>
                                                     <md-option value="app">Batch 1 </md-option>
                                                     <md-option value="web">Batch 2 </md-option>
@@ -87,7 +88,7 @@
                                             <div ng-if="status" id="status">
                                                 <b layout="row" layout-align="center center" class="md-padding">{{status}}</b>
                                             </div>
-                                            <input type="file" name="file" id='file' onchange="angular.element(this).scope().uploadFile()"/>
+                                            <input type="file" file-model="myFile" name="file" id='file' onchange="angular.element(this).scope().uploadFile()"/>
                                             <input type='submit' value='Upload!' />
                                             <!--  </div>-->
                                             <!--                      </div>-->
@@ -95,29 +96,30 @@
                                         </form>
                                     </md-content>
                                 </md-tab>
-                                <md-tab label="Delete log">
+                                <md-tab label="Delete log" ng-if="showTabs">
                                     <md-content class="md-padding">
                                         <h4>Remove a file</h4>
                                         <form ng-submit="$event.preventDefault()">
-                                            <md-autocomplete ng-disabled="isDisabled" md-no-cache="noCache" md-selected-item="selectedItem" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in querySearch(searchText)" md-item-text="item.display" md-min-length="0" placeholder="Select a Data Source" required>
-                                                <md-item-template> <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span> </md-item-template>
-                                                <md-not-found> No sources matching "{{searchText}}" were found. <a ng-click="newState(searchText)">Create a new one!</a> </md-not-found>
-                                            </md-autocomplete>
+                                            <md-input-container class="md-block" flex>
+                                                <label>Source</label>
+                                                <md-select name="source" ng-model="file.source">
+                                                    <md-option ng-repeat="source in sourceList" value="{{source}}" ng-click="getBatches(source)">{{source}}</md-option>
+                                                </md-select>
+                                            </md-input-container>
                                             <br>
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
-                                                <md-select name="type" ng-model="project.type" required>
-                                                    <md-option value="app">Batch 1 </md-option>
-                                                    <md-option value="web">Batch 2</md-option>
+                                                <md-select name="type" ng-model="file.batch" required>
+                                                    <md-option ng-repeat="batch in selectedBatches" value="{{batch}}" ng-click="getComments(file.source,batch)">{{batch}}</md-option>
                                                 </md-select>
                                             </md-input-container>
                                             <md-input-container class="md-block">
                                                 <label>Comments about the log files</label>
-                                                <textarea ng-readonly="false" ng-model="user.biography" md-maxlength="100" rows="3" md-select-on-focus>How many roads mus a man walk down
+                                                <textarea ng-readonly="true" ng-model="comments" rows="3" md-select-on-focus>
                                                 </textarea>
                                             </md-input-container>
                                             <div layout="row" layout-align="start center">
-                                                <md-button class="md-raised md-primary">Delete</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="deleteLog()">Delete</md-button>
                                             </div>
                                             <p> </p>
                                         </form>

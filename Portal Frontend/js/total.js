@@ -1,13 +1,13 @@
 // var app = angular.module('metadataapp', ['ngMaterial', 'ngMessages']);
 
-logApp.controller('totalCtrl', function($scope,$http) {
+logApp.controller('totalCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService) {
 	
 	$scope.selectedList = [];
 	$scope.selectedLevel = "Levels";
 	$scope.selectedItem = "Errors/Warning";
 
 	$scope.availableItems = [];
-	$scope.collectionName = "LOG_snltr";
+	$scope.collectionName = userInfoService.getCollection()
 	
 	$scope.levels = [];
 	$scope.levels.push({name: "All", value:"all",isAttempted: false});
@@ -21,7 +21,9 @@ logApp.controller('totalCtrl', function($scope,$http) {
 	$scope.items.push({name: "Warnings", value:"warn", isAttempted: false});
 
 	// var url = "http://10.146.95.172:3000/api/report";
-		var url = "http://localhost:3000/api/report";
+	var url = config.serverUrl + "/api/report";
+
+console.log($scope.collectionName)
 
 	$scope.getLevelName = function(level){
 		for(i in $scope.levels){
@@ -58,6 +60,9 @@ logApp.controller('totalCtrl', function($scope,$http) {
 		}
 	};
 	
+	$scope.availableItems = []
+	$scope.getArray = []
+	$scope.getHeader = function () {return ["Information Code", "Level", "Count"]};
 	$scope.submitList = function(){
 			//$http.post(){}
 			$scope.availableItems=[];
@@ -66,15 +71,16 @@ logApp.controller('totalCtrl', function($scope,$http) {
 				"level": $scope.selectedOptionlevel,
 				"flag": $scope.selectedOptionItem
 			};
-			console.log(data);
+			// console.log(data);
 			var responsePromise = $http.post(url,data);
 			responsePromise.then(function(response) {
 					$scope.leftListObtained = true;
                     var availabledata = response.data.item;	
 					for(var i=0;i<availabledata.length;i++){
-						$scope.availableItems.push({ value : availabledata[i].name, count : availabledata[i].count, level : $scope.getLevelName(availabledata[i].level) });
+						$scope.availableItems.push({ value : availabledata[i].name, count : availabledata[i].count, level : $scope.getLevelName(availabledata[i].level)});
+						$scope.getArray.push({ value : availabledata[i].name, level : $scope.getLevelName(availabledata[i].level), count : availabledata[i].count});
 					}
-					console.log($scope.availableItems);
+					console.log(JSON.parse(angular.toJson($scope.availableItems)));
                 });
 				
 	};
@@ -82,6 +88,8 @@ logApp.controller('totalCtrl', function($scope,$http) {
 	$scope.generateCSV = function(){
 		
 	};
+
+	//$scope.getArray = JSON.parse(angular.toJson($scope.availableItems))
 
 	//$scope.$apply();
 

@@ -44,7 +44,7 @@
                                     <th>&nbsp;</th>
                                     <th width="34%" layout-align="center center">
                                         <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
-                                            <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                            <md-button class="md-raised" ng-csv="getArray" csv-header="getHeader()" filename="Report.csv">Generate CSV </md-button>
                                         </div>
                                     </th>
                                     <th>&nbsp;</th>
@@ -57,7 +57,7 @@
                                     <th>&nbsp;</th>
                                     <th>Count</th>
                                 </tr>
-                                <tr ng-repeat="availableItem in availableItems">
+                                <tr ng-repeat="availableItem in availableItems | orderBy : '-count'">
                                     <td>{{ availableItem.value }}</td>
                                     <td>&nbsp;</td>
                                     <td>{{ availableItem.level }}</td>

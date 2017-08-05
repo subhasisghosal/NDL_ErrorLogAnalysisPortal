@@ -1,0 +1,1 @@
+[{"fieldName":"dc.date.accessioned","informationCode":"ERR_UNKNOWN_METADATA","handle":"123456789\/14047","fieldValue":"2015-12-24T03:35:22Z"},{"fieldName":"dc.description.provenance","informationCode":"ERR_UNKNOWN_METADATA","handle":"123456789\/14047","fieldValue":"Restored into DSpace on 2015-12-24T03:35:22Z (GMT)."}]

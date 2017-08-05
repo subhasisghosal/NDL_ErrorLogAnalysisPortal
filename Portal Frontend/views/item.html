@@ -1,0 +1,86 @@
+<div flex layout="row">
+    <div layout="column" flex="90" flex-offset="5">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div layout="column">
+                            <h2>Item Level Error</h2>
+                            <hr>
+                            <div layout="row">
+                                <md-content style="overflow:hidden; margin-bottom:-1px">
+                                    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                                        <md-nav-item md-nav-click="setChoice('informationCode');" name="page1">
+                                            Information Code
+                                        </md-nav-item>
+                                        <md-nav-item md-nav-click="setChoice('fieldName');" name="page2">
+                                            Field Name
+                                        </md-nav-item>
+                                        <md-nav-item md-nav-click="setChoice('fieldValue');" name="page3">
+                                            Field Value
+                                        </md-nav-item>
+                                    </md-nav-bar>
+                                </md-content>
+                                <div flex layout-align="center center" layout="row" style=" background-color:#F6F5F9 ">
+                                    <md-button ng-click="submitList();" class="md-raised md-primary">Submit</md-button>
+                                </div>
+                            </div>
+                            <div>
+                                <hr>
+                                <p></p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" md-api-table">
+                            <tbody>
+                                <tr>
+                                    <th width="33%"> </th>
+                                    <th width="33%" layout-align="center center">
+                                        <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
+                                            <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                        </div>
+                                    </th>
+                                    <th width="33%"> </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div layout="row">
+            <div layout="column" flex="30">
+                <div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
+                    <div ng-class="(availableOption.isAttempted === true)?'pressed':'nonpressed'" layout="row" style="padding: 8px 10px; border-bottom: solid 1px #000;">
+                        <span flex="85">{{availableOption.value}}</span>
+                        <span flex="15" layout="row" layout-align="center center" class="roundcorner">{{availableOption.count}}</span>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="rightListObtained === true" layout="column" flex="70">
+                <!--table-->
+                <div ng-if="true">
+                    <div ng-repeat="availableItem in availableItems" layout="column" style="padding-left: 15px;">
+                        <!--tr-->
+                        <!--Need to implement table structure using span and div-->
+                        <div ng-if="flag === true" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
+                            <span flex="25"><!--td-->{{availableItem}}<!--/td--></span>
+                        </div>
+                        <div ng-if="flag === false" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
+                            <span flex="25"><!--td-->{{availableItem.handleId}}<!--/td--></span>
+                            <span flex="65"><!--td-->
+                              <div ng-repeat="value in availableItem.fieldvalue track by $index">{{value}}</div>
+                            </span>
+                            <span flex="10"><!--td-->{{availableItem.fieldvalue.length}}<!--/td--></span>
+                        </div>
+                        <!--/tr-->
+                    </div>
+                </div>
+                <!--/table-->
+            </div>
+        </div>
+    </div>
+</div>

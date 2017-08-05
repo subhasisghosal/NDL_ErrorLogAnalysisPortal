@@ -1,0 +1,36 @@
+{ 
+    "_id" : ObjectId("5977972dfb52aa29f22b95da"), 
+    "sourceCode" : "ASI", 
+    "sourceName" : "Archeological Survey of India", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5977980b2eebaa2a65ed7e74"), 
+    "sourceCode" : "WEL", 
+    "sourceName" : "World Ebook Library", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5978d10448556472382aed9e"), 
+    "sourceCode" : "IEEE", 
+    "sourceName" : "Institute of Electrical and Electronics Engineers", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5979d54b628c902fed884c07"), 
+    "sourceCode" : "SPR", 
+    "sourceName" : "Springer", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a28bed797f554a4056c90"), 
+    "sourceCode" : "WHO", 
+    "sourceName" : "World Heath Organization", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a543f72b8fc648db40f28"), 
+    "sourceCode" : "SNLTR", 
+    "sourceName" : "Society For Natural Language Technology Research", 
+    "__v" : NumberInt(0)
+}

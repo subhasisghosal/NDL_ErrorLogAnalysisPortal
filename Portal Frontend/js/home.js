@@ -1,19 +1,59 @@
 // var logApp = angular.module('logAnalysisApp', ['ngMaterial','lfNgMdFileInput','ngRoute']);
-logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $location, $http, config) {
+logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService) {
 
-    $scope.userData = $rootScope.data;
-    console.log("User is" + JSON.stringify($scope.userData));
+    // $scope.userData = $rootScope.data;
+    console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));    
     // $scope.sourceList = [];
 
 
-    if (!$scope.userData)
-        $location.url("login");
+    $scope.userData = userInfoService.getUserInfo();
+    $scope.sourceList = []
+    $scope.selectedBatches = []
 
+    if (!$scope.userData.userid){
+        $location.url("/login");
+        return
+    }
+    
+
+   var sourceList = []
+   // console.log(userData.uploads)
+   for (index in $scope.userData.uploads) {
+            // console.log(response.data[index]);
+        sourceList.push($scope.userData.uploads[index].sourceCode);
+    }
+    console.log(sourceList)
+    if (sourceList.length > 0)
+            $scope.sourceList = sourceList;
+    
+
+    var role = userInfoService.getUserRole()
     $scope.isDisabled = false;
     $scope.noCache = true;
     $scope.selectedItem = "";
     $scope.searchText = "";
     $scope.sourceInfo = []
+    $scope.showTabs = (role.toUpperCase() === "CS")
+
+    $scope.getBatches = function(source){
+        for(var i in $scope.userData.uploads){
+            if($scope.userData.uploads[i].sourceCode === source)
+                $scope.selectedBatches.push($scope.userData.uploads[i].batch)
+        }
+    }
+
+    $scope.getComments = function(source, batch){
+        for(var i in $scope.userData.uploads){
+            if($scope.userData.uploads[i].sourceCode === source && $scope.userData.uploads[i].batch === batch)
+                $scope.comments = $scope.userData.uploads[i].comments
+                $scope.selectedFile = $scope.userData.uploads[i]
+        }
+    }
+
+    $scope.showLogReports = function(){
+        userInfoService.setCollection($scope.selectedFile.collectionName)
+        $location.url("reportshome")
+    }
 
     $scope.getSources = function() {
         $scope.assItems = []
@@ -21,6 +61,14 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
             .then(function(response) {
                 $scope.sourceInfo = response.data
                 //console.log($scope.sourceInfo)
+            })
+    }
+
+    $scope.deleteLog = function(){
+        console.log($scope.file)
+        $http.post(config.serverUrl + "/api/deleteLog", $scope.file)
+            .then(function(response){
+
             })
     }
 
@@ -73,15 +121,30 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
         console.log("Selected File");
     };
 
-    $scope.uploadFile = function(element) {
-        $scope.$apply(function(scope) {
-            console.log('files:', element.files);
-            // Turn the FileList object into an Array
-            $scope.files = []
-            for (var i = 0; i < element.files.length; i++) {
-                $scope.files.push(element.files[i])
-            }
-            $scope.progressVisible = false
+    $scope.uploadFile = function() {
+        // $scope.$apply(function(scope) {
+        //     console.log('files:', element.files);
+        //     // Turn the FileList object into an Array
+        //     $scope.files = []
+        //     for (var i = 0; i < element.files.length; i++) {
+        //         $scope.files.push(element.files[i])
+        //     }
+        //     $scope.progressVisible = false
+        // });
+        var file = $scope.myFile;
+        var uploadUrl = "/testRef";
+        var fd = new FormData();
+        fd.append('file', file);
+
+        $http.post(config.serverUrl + uploadUrl,fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+          console.log("success!!");
+        })
+        .error(function(){
+          console.log("error!!");
         });
     };
     // $scope.onFileSelect = function($files) {

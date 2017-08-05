@@ -1,0 +1,90 @@
+{ 
+    "_id" : ObjectId("597636efa6a0e71f13d0e170"), 
+    "userId" : "johnny", 
+    "password" : "$2a$10$c9wuehU5Ljh4sNlPzZ6WhOiYj4JTYaV6c2mHI2VV6zkN5J/6e1ReO", 
+    "firstName" : "John", 
+    "lastName" : "Cena", 
+    "__v" : NumberInt(0), 
+    "role" : "admin"
+}
+{ 
+    "_id" : ObjectId("59776567a83f6d17cd620f43"), 
+    "userId" : "paul", 
+    "password" : "$2a$10$KSsfMw6tC/Mq7nDB3ST4A.1eVQxWomWtOpuC.hzhz.aJpDEAKE1Qy", 
+    "firstName" : "Paul", 
+    "lastName" : "McCartney", 
+    "role" : "cs", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5977803952644d205c28aac7"), 
+    "userId" : "subhra", 
+    "password" : "$2a$10$vSGofLR730m58/UU3zrU9efFNbZLRdc9/QGbxRrqSIZzmJmLkB0rS", 
+    "firstName" : "SubhraJyoti", 
+    "lastName" : "Lahiri", 
+    "role" : "CS", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597780b152644d205c28aac8"), 
+    "userId" : "rajib", 
+    "password" : "$2a$10$2u0jIQLUGsyMUCnVla0qF..c4MuYHMtAUx/.ZtyFrQCQQzH67TbKS", 
+    "firstName" : "Rajib", 
+    "lastName" : "Kundu", 
+    "role" : "ls", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5979d589628c902fed884c09"), 
+    "userId" : "reema", 
+    "password" : "$2a$10$eLB1oKOksonhIUQp1jaHTeAPhhZK0XqlJPrSesm0xT8qtiuhbaT9u", 
+    "firstName" : "Rima", 
+    "lastName" : "Barick", 
+    "role" : "LS", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a29d6d797f554a4056c92"), 
+    "userId" : "ananda", 
+    "password" : "$2a$10$bwDvZqkVB0QylfdwElF.X.1RGUeL5BR/Q8t5sMcXiy37FfEyMTzVi", 
+    "firstName" : "Ananda", 
+    "lastName" : "Das", 
+    "role" : "cs", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a370359c0cb5db30ee6f3"), 
+    "userId" : "dj", 
+    "password" : "$2a$10$VL7VrbyG7A/4EhQRSt4NB.5Jm4qdOmRXjJPZc40wqAj53HVolpv4q", 
+    "firstName" : "Debasis", 
+    "lastName" : "Jana", 
+    "role" : "cs", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59840378ba54bf4a0485cef4"), 
+    "userId" : "dhara", 
+    "password" : "$2a$10$RusLoUz3DcsQ4kizaPsGWOhNdgg9hzhAdYwjVU85eydngYRZfmA7u", 
+    "firstName" : "Dhara", 
+    "lastName" : "Sharma", 
+    "role" : "LS", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59840378ba54bf4a0485cef6"), 
+    "userId" : "arunavo1", 
+    "password" : "$2a$10$gsnAk8p0nWYGE67Acl/rD.e0SPxKLX9q3Rv9X1RilQ1AcaqOLPjHW", 
+    "firstName" : "Arunavo", 
+    "lastName" : "Banerjee", 
+    "role" : "CS", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("598408dc9b34c84b99c93e81"), 
+    "userId" : "saikat", 
+    "password" : "$2a$10$akPif6wrSpJs0FqcDQLoN.pGU4bWRCPlWVgPLoWBNtuBvubYR90pS", 
+    "firstName" : "Saikat", 
+    "lastName" : "Debnath", 
+    "role" : "CS", 
+    "__v" : NumberInt(0)
+}

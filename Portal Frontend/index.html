@@ -21,6 +21,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <!-- Angular Router Library -->
 <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+<!-- CSV Generating library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.min.js"></script>
+<script src="./dist/ng-csv.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.5/angular-sanitize.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.min.js"></script>-->
 <!-- JQuery Library -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -43,6 +48,9 @@
 <script src="js/home.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/total.js"></script>
+<script src="js/itemlevel.js"></script>
+<script src="js/metadatalevel.js"></script>
+<script src="js/sourcelevel.js"></script>
 
 
 <body ng-app="logAnalysisApp" ng-cloak layout="column">
@@ -50,7 +58,7 @@
     <md-toolbar class="md-whiteframe-5dp topbar" layout="row">
         <div flex="20" layout-padding> <img src="images/logo-lg-green.svg" alt="" /> </div>
         <div flex="60"> </div>
-        <div flex="20"> LogOut </div>
+        <div flex="20" ng-if=> LogOut </div>
     </md-toolbar>
     <!--
         Your HTML content here

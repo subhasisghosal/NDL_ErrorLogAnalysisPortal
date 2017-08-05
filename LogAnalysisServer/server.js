@@ -9,7 +9,8 @@ var session = require('express-session')
 }
 */
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/ndl')
+// mongoose.connect('mongodb://10.17.14.26:27017/ndl')
+mongoose.connect('mongodb://localhost:27017/ndl')
 
 var fileUpload = require('express-fileupload')
 app.use(fileUpload())
@@ -28,8 +29,16 @@ var async = require('async')
 var bcrypt = require('bcrypt');
 
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
-
+// var upload = multer({ dest: 'uploads/' })
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname+ '-' + Date.now())
+    }
+});
+var upload = multer({ storage: storage });
 // var config = require('./config')
 
 var itemSchema = mongoose.Schema({
@@ -456,44 +465,51 @@ app.post('/api/report', function(req, res) {
     var flagValue = (req.body.flag === "warn") ? true : (req.body.flag === "err") ? false : [true, false]
     var commonDemo = mongoose.model('commonDemo', commonSchema, collectionName)
     var infoCodeDemo = mongoose.model('infoCodeDemo', infoCodeSchema, "informationCodeMaster")
-    var resObj = { item: [] }
+    var resObj = {};
+        resObj.item = []
     var qs = { "level": level, "warn_flag": flagValue }
     commonDemo.find()
         .distinct("informationCode", qs, function(err, items) {
-            // console.log(items)
+            //console.log(items)
             if (err) throw err;
             async.eachSeries(items, function(item, calback) {
-                console.log(item)
+                //console.log(item)
                 infoCodeDemo.findOne(function(err, infoCodes) {
+                    
+                    console.log(infoCodes.informationCode + " " + infoCodes.level)
                     var lvl = infoCodes.level
-                    console.log(infoCodes)
+
                     getCount = function(q, callback) {
                         commonDemo.find(q)
                             .where("informationCode").equals(item)
                             .count(function(err, cnt) {
-                                resObj.item.push({ "name": item, "count": cnt, "level": lvl })
+                                // resObj.item.push({ "name": item, "count": cnt, "level": lvl })
                                 // console.dir(resObj)
-                                callback && callback(resObj)
+                                if (cnt)
+                                    callback(item, cnt, lvl)
                             })
                     }
-                    getCount(qs, function(data) {
-                        // console.dir(data)
+                    getCount(qs, function(item, cnt, lvl) {
+                        resObj.item.push({ "name": item, "count": cnt, "level": lvl })
                         calback()
                     });
                 }).where("informationCode").equals(item)
             }, function(err) {
-                if (err) throw err
-                console.log("Done")
-                res.send(resObj)
+                if (!err)
+                    res.send(resObj)
             })
         })
 })
 
 //For Testing purpose
-app.post('/testRef', upload.single('avatar'), function(request, response) {
+app.post('/testRef', upload.single('file'), function(request, response) {
         
     console.log(request)
     console.log(request.body)
+
+    
+
+app.post('/multer', upload.single('file'));
 
     response.status(200).send("Done")
 
@@ -678,6 +694,136 @@ app.post('/api/file', function(req, res) {
             }
         }
     });
+})
+
+app.post('/api/fileProcess', function(req, response) {
+    var fileName = req.body.file
+    var userId = req.body.userId
+    var source = req.body.source
+    var batch = req.body.batch
+    var comments = req.body.comments
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
+    var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
+
+    uploadPath = '/Users/subhasisghosal/github/NDL_Error_Log_Analysis-development/LogAnalysisServer/upload/' + fileName
+    extractPath = '/Users/subhasisghosal/github/NDL_Error_Log_Analysis-development/LogAnalysisServer/upload/unzipped/'
+    // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv(uploadPath, function(err) {
+    //     if (err)
+    //         return res.status(500).send(err);
+    //     // res.send('File uploaded!');
+    // });
+    extract(uploadPath, { dir: extractPath }, function(err) {
+        // extraction is complete. make sure to handle the err 
+        if (err) throw err;
+    })
+    var getLogs = function(src, callback) {
+        glob(src + '**/*/*.txt', callback);
+    };
+    getLogs(extractPath, function(err, res) {
+        if (err) {
+            console.log('Error', err);
+        } else {
+            // console.log(res);
+            // console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            // console.log(file.lfFileName.split(".")[0])
+            sourceName = userId + source + "batch" + batch
+            var entry = new uploadLog({
+                userID: userId,
+                fileName: fileName,
+                sourceCode: source,
+                batch: batch,
+                comments: comments,
+                collectionName: sourceName
+            })
+            console.log(entry)
+            entry.save(function(err, record) {
+                if (err) return console.error(err);
+            })
+            // sourceName = sampleFile.name.split(".")[0]
+            var ItemDemo = mongoose.model('ItemDemo', itemSchema, sourceName)
+            var MetadataDemo = mongoose.model('MetadataDemo', metadataSchema, sourceName)
+            var SourceDemo = mongoose.model('SourceDemo', sourceSchema, sourceName)
+            for (f in res) {
+                // console.log(res[f])
+                var level = ""
+                if (/ItemError/.test(res[f])) {
+                    level = "itemLevel"
+                }
+                if (/MetadataError/.test(res[f])) {
+                    level = "metadataLevel"
+                }
+                if (/SourceError/.test(res[f])) {
+                    level = "sourceLevel"
+                }
+                var content = fs.readFileSync(res[f]);
+                if (/metaInfo.txt/.test(res[f])) {
+                    sourceName = content
+                    // console.log("\nIt is Handle Info: "+ content)
+                } else {
+                    // console.log("\nOutput Content : \n"+ content);
+                    var jsonCont = JSON.parse(content);
+                    // console.dir(jsonCont)
+                    jsonCont.forEach(function(item) {
+                        console.log(item)
+                        console.log("--------------------------")
+                        flag = /ERR/.test(item.informationCode) ? false : true
+                        switch (level) {
+                            case "itemLevel":
+                                var record = new ItemDemo({
+                                    handle: item.handle,
+                                    informationCode: item.informationCode,
+                                    fields: item.fields,
+                                    level: level,
+                                    warn_flag: flag
+                                })
+                                break;
+                            case "metadataLevel":
+                                var record = new MetadataDemo({
+                                    handle: item.handle,
+                                    informationCode: item.informationCode,
+                                    fieldName: item.fieldName,
+                                    fieldValue: item.fieldValue,
+                                    level: level,
+                                    warn_flag: flag
+                                })
+                                break;
+                            case "sourceLevel":
+                                var record = new SourceDemo({
+                                    handle: item.handles,
+                                    informationCode: item.informationCode,
+                                    level: level,
+                                    warn_flag: flag
+                                })
+                                break;
+                        }
+                        record.save(function(err, record) {
+                            if (err) return console.error(err);
+                        })
+                    })
+                    
+                }
+                // console.log("\n*********************************\n")
+            }
+            response.send("processing")
+        }
+    });
+})
+
+app.post('/fileUpload', function(req, res) {
+    console.log(req.files.uploadedFile.name)
+    if (!req.files)
+        return res.status(400).send('No files were uploaded.')
+    console.log(req.files.uploadedFile)
+    let sampleFile = req.files.uploadedFile
+    uploadPath = '/home/subhasis/NDL_Error_Log_Analysis/LogAnalysisServer/upload/' + sampleFile.name
+    extractPath = '/home/subhasis/NDL_Error_Log_Analysis/LogAnalysisServer/upload/unzipped/'
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv(uploadPath, function(err) {
+        if (err)
+            return res.status(500).send(err)
+        res.send('File uploaded!')
+    })
 })
 
 app.post('/api/issuetracker', function(req, res) {
@@ -932,7 +1078,15 @@ app.post('/admin/deleteSource', function(req, res) {
     })
 })
 
-app.post('/admin/editSource', function(req, res) {})
+app.post('/admin/editSource', function(req, res) {
+    var sourceCode = req.body.sourceCode
+    var sourceName = req.body.sourceName
+    var dataSource = mongoose.model('dataSource', dataSourceSchema, 'dataSources')
+    dataSource.update({'sourceCode':sourceCode}, {'sourceName':sourceName}, function(err, item){
+        console.log(item)
+        res.send("Source Updated")
+    })
+})
 
 app.post('/admin/deleteUser', function(req, res) {
     var user = req.body.userId
@@ -943,14 +1097,26 @@ app.post('/admin/deleteUser', function(req, res) {
     })
 })
 
-app.post('/admin/editUser', function(req, res) {})
+app.post('/admin/editUser', function(req, res) {
+    var id = req.body.userId
+    var editedData = {
+        'firstName' : req.body.firstName,
+        'lastName' : req.body.lastName,
+        'role' : req.body.role
+    }
+    var userDemo = mongoose.model('user', userSchema, 'userMaster')
+    userDemo.update({'userId':id}, editedData, function(err, item){
+        console.log(item)
+        res.send("Source Updated")
+    })
+})
 
-app.get('/api/file', function(req, res) {
-    sess = req.session
-    var source = req.get("source")
-    var batch = req.get("batch")
-    console.log(sess)
-    res.send("Welcome" + " " + source + " " + batch)
+app.post('/users/getRole', function(req, res) {
+    var user = req.body.userId
+    var userDemo = mongoose.model('user', userSchema, 'userMaster')
+    userDemo.findOne({'userId':user}).select('role').exec(function(err, role){
+        res.send(role)
+    })
 })
 
 app.post('/api/getCollections', function(req, res) {
@@ -964,8 +1130,26 @@ app.post('/api/getCollections', function(req, res) {
     // res.send("Collections")
 })
 
-app.delete('/api/file', function(req, res) {
-
+app.post('/api/deleteLog', function(req, res) {
+    var source = req.body.source
+    var batch = req.body.batch
+    var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
+    uploadLog.findOne({'sourceCode':source, 'batch':batch},function(err, item){
+    // uploadLog.findOne({'sourceCode':source, 'batch':batch}).remove(function(err, item){
+        console.log(item.collectionName)
+        var collection = item.collectionName
+        uploadLog.findOne({'sourceCode':source, 'batch':batch}).remove(function(err, item){
+            if(!err){
+                mongoose.connection.db.dropCollection(collection, function(err, result){
+                    if(!err){
+                        res.send("Delete Success")
+                    }
+                })
+            }
+        })
+        // mongoose.connection.db.dropCollection('')
+        
+    })
 })
 
 app.post('/users/register', function(req, res) {
@@ -997,6 +1181,7 @@ app.post('/users/authenticate', function(req, response) {
     sess.password = req.body.password
     sess.loginStatus = false
     var User = mongoose.model('User', userSchema, "userMaster")
+    var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
     User.findOne(function(err, user) {
         if (!user) {
             console.log("If block")
@@ -1008,9 +1193,19 @@ app.post('/users/authenticate', function(req, response) {
             bcrypt.compare(sess.password, user.password, function(err, res) {
                 if (err) throw err
                 if (res) {
-                    sess.loginStatus = true
-                    console.log(sess)
-                    response.send(sess)
+                    var uploads = []
+                    uploadLog.find({'userID':sess.userid}).exec(function(err, item){
+                        for(var i in item){
+                            uploads.push(item[i])
+                        }
+                        if(uploads.length>0){
+                            sess.uploads = uploads
+                        }
+                        
+                        sess.loginStatus = true
+                        console.log(sess)
+                        response.send(sess)
+                    })
                     // response.send("Login Success")
                 } else {
                     // sess.destroy();

@@ -1,0 +1,33 @@
+{ 
+    "_id" : ObjectId("5982f517c1315f47d0efbc31"), 
+    "userID" : "subhra", 
+    "sourceCode" : "SNLTR", 
+    "fileName" : "LOG_snltr.zip", 
+    "batch" : "2", 
+    "comments" : "First Comment", 
+    "collectionName" : "subhraSNLTRbatch2", 
+    "uploadTime" : ISODate("2017-08-03T10:04:07.825+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59849299a1b8c0aeac5ed6ab"), 
+    "userID" : "dj", 
+    "sourceCode" : "ACM", 
+    "fileName" : "LOG_ACM_Transaction.zip", 
+    "batch" : "2", 
+    "comments" : "Second Comment Backup", 
+    "collectionName" : "djACMbatch1", 
+    "uploadTime" : ISODate("2017-08-03T10:06:10.476+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("598449bbcaa9dc4d6210e45e"), 
+    "userID" : "dj", 
+    "fileName" : "LOG_ACM_Transaction.zip", 
+    "sourceCode" : "ACM", 
+    "batch" : "1", 
+    "comments" : "Second Comment", 
+    "collectionName" : "djACMbatch1", 
+    "uploadTime" : ISODate("2017-08-04T10:17:31.278+0000"), 
+    "__v" : NumberInt(0)
+}

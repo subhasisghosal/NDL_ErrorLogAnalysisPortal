@@ -1,0 +1,131 @@
+{ 
+    "_id" : ObjectId("5978d17348556472382aeda1"), 
+    "userId" : "yusuf", 
+    "sourceCodes" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5978d1eb48556472382aeda3"), 
+    "userId" : "paul", 
+    "sourceCodes" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5978d234029c6e0a72161212"), 
+    "userId" : "sam", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a1806114e074bdaf4dc5f"), 
+            "code" : "IEEE", 
+            "isActive" : true
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5978d243029c6e0a72161214"), 
+    "userId" : "subhra", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a2205d797f554a4056c8d"), 
+            "isActive" : true, 
+            "code" : "IEEE"
+        }, 
+        {
+            "_id" : ObjectId("597a27f9d797f554a4056c8f"), 
+            "isActive" : true, 
+            "code" : "WEL"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5978d248029c6e0a72161216"), 
+    "userId" : "rajib", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a21d3d797f554a4056c8b"), 
+            "isActive" : false, 
+            "code" : "IEEE"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5979d589628c902fed884c0a"), 
+    "userId" : "reema", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a34315c43c95c28128ae1"), 
+            "isActive" : true, 
+            "code" : "IPS"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a29d6d797f554a4056c93"), 
+    "userId" : "ananda", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a2a46d797f554a4056c95"), 
+            "isActive" : true, 
+            "code" : "SPR"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("597a370359c0cb5db30ee6f4"), 
+    "userId" : "dj", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("597a371b59c0cb5db30ee6f6"), 
+            "isActive" : true, 
+            "code" : "WHO"
+        }, 
+        {
+            "_id" : ObjectId("597a372a59c0cb5db30ee6f8"), 
+            "isActive" : false, 
+            "code" : "IEEE"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59840378ba54bf4a0485cef5"), 
+    "userId" : "dhara", 
+    "sourceCodes" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("59840378ba54bf4a0485cef7"), 
+    "userId" : "arunavo1", 
+    "sourceCodes" : [
+        {
+            "_id" : ObjectId("598413099b34c84b99c93e86"), 
+            "isActive" : true, 
+            "code" : "WEL"
+        }, 
+        {
+            "_id" : ObjectId("598413229b34c84b99c93e88"), 
+            "isActive" : true, 
+            "code" : "WEL"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("598408dc9b34c84b99c93e82"), 
+    "userId" : "saikat", 
+    "sourceCodes" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}
