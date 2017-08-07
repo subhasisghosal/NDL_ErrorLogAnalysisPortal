@@ -33,7 +33,7 @@ logApp.config(['$routeProvider', '$compileProvider','$mdThemingProvider', functi
 	})
 	.when('/reportshome', {
 		templateUrl: 'views/reports.html',
-		// controller: 'reportsMenuCtrl'
+		controller: 'reportsMenuCtrl'
 	})
 	.when('/totalreport', {
 		templateUrl: 'views/total.html',

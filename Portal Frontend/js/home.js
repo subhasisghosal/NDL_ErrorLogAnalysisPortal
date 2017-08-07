@@ -8,14 +8,20 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
 
     $scope.userData = userInfoService.getUserInfo();
     $scope.username = userInfoService.getUserName()
+    $scope.role = userInfoService.getUserRole()
     $scope.sourceList = []
     $scope.selectedBatches = []
 
-    if (!$scope.userData.userid){
+    if (!$scope.userData.userid && $scope.role==="admin"){
         $location.url("/login");
         return
     }
     
+    $scope.logout = function(){
+        userInfoService.removeUserInfo()
+        $location.url("/login");
+        return
+    }
 
    var sourceList = []
    // console.log(userData.uploads)

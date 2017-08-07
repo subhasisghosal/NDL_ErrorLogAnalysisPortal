@@ -8,6 +8,7 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 	$scope.availableItems = [];
 	$scope.selectedOption = 'informationCode';
 	$scope.collectionName = userInfoService.getCollection()
+	$scope.username = userInfoService.getUserName()
 	$scope.flag = false;
 	$scope.flag2 = 'A';
 	$scope.prevchoice = 'informationCode'
@@ -23,6 +24,12 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 		else if(choice == 'fieldName')
 			$scope.flag = false;
 	};
+
+	$scope.logout = function(){
+        userInfoService.removeUserInfo()
+        $location.url("/login");
+        return
+    }
 	
 	$scope.getArray = []
 	$scope.getHeader = function () {

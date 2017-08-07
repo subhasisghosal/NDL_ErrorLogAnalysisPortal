@@ -8,6 +8,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
     $scope.availableInfoCode = [];
     $scope.selectedOption = 'informationCode';
     $scope.collectionName = userInfoService.getCollection()
+    $scope.username = userInfoService.getUserName()
     $scope.flag = 0;
 
     console.log($scope.collectionName)
@@ -24,6 +25,12 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
         else if (choice === 'fieldValue')
             $scope.flag = 3;
     };
+
+    $scope.logout = function(){
+        userInfoService.removeUserInfo()
+        $location.url("/login");
+        return
+    }
 
     $scope.getArray = []
     $scope.getHeader = function() {

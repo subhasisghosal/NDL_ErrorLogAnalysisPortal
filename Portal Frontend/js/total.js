@@ -2,6 +2,8 @@
 
 logApp.controller('totalCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService) {
 	
+	$scope.username = userInfoService.getUserName()
+	
 	$scope.selectedList = [];
 	$scope.selectedLevel = "Levels";
 	$scope.selectedItem = "Errors/Warning";
@@ -24,6 +26,12 @@ logApp.controller('totalCtrl', function($rootScope, $scope, $timeout, $location,
 	var url = config.serverUrl + "/api/report";
 
 console.log($scope.collectionName)
+	
+	$scope.logout = function(){
+        userInfoService.removeUserInfo()
+        $location.url("/login");
+        return
+    }
 
 	$scope.getLevelName = function(level){
 		for(i in $scope.levels){

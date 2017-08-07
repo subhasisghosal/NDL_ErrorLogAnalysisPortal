@@ -1,11 +1,22 @@
 <div layout="column" flex="90" flex-offset="5">
 	<div class="box1" layout="column">
-		<h2>Reports about Error/Warnings</h2>
+		<div layout="row" layout-align="end center">
+			<div flex="70">
+				<h2>Reports about Error/Warnings</h2>
+			</div>
+			<div flex="30" layout="row">
+                <h4>&nbsp; Logged In as: {{username}}</h4>
+                <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
+            </div>
+        </div>
 		<hr>
-		<div class="rows" layout-padding layout-margin><p><i class="fa fa-angle-right fa-2"></i><a href="http://localhost:8080/#/totalreport">Total level wise count of Error/Warning Report</a></p></div>
-		<div class="rows" layout-padding layout-margin><p><i class="fa fa-angle-right fa-2"></i><a href="http://localhost:8080/#/itemreport">Item Level Report</a></p></div>
-		<div class="rows" layout-padding layout-margin><p><i class="fa fa-angle-right fa-2"></i><a href="http://localhost:8080/#/metadatareport">Metadata Level Report</a></p></div>
-		<div class="rows" layout-padding layout-margin><p><i class="fa fa-angle-right fa-2"></i><a href="http://localhost:8080/#/sourcereport">Source Level Report</a></p></div>
+		<div class="rows" style="cursor:pointer" layout-padding layout-margin ng-click="route(1)"><p><i class="fa fa-angle-right fa-2"></i><!--<a href="http://localhost:8080/#/totalreport">-->Total level wise count of Error/Warning Report<!--</a>--></p></div>
+		<br>
+		<div class="rows" style="cursor:pointer" layout-padding layout-margin ng-click="route(2)"><p><i class="fa fa-angle-right fa-2"></i>Item Level Report</p></div>
+		<br/>
+		<div class="rows" style="cursor:pointer" layout-padding layout-margin ng-click="route(3)"><p><i class="fa fa-angle-right fa-2"></i>Metadata Level Report</p></div>
+		<br>
+		<div class="rows" style="cursor:pointer" layout-padding layout-margin ng-click="route(4)"><p><i class="fa fa-angle-right fa-2"></i>Source Level Report</p></div>
 
 	</div>	
 </div>

@@ -5,7 +5,15 @@
                 <tr>
                     <td>
                         <div layout="column">
-                            <h2>Item Level Error</h2>
+                            <div layout="row" layout-align="end center">
+                                <div flex="70">
+                                    <h2>Item Level Error</h2>
+                                </div>
+                                <div flex="30" layout="row">
+                                    <h4>&nbsp; Logged In as: {{username}}</h4>
+                                    <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
+                                </div>
+                            </div>
                             <hr>
                             <div layout="row">
                                 <md-content style="overflow:hidden; margin-bottom:-1px">
@@ -55,7 +63,7 @@
             <div layout="column" flex="30" class="scrollable">
                 <div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
                     <div ng-class="(availableOption.isAttempted === true)?'pressed':'nonpressed'" layout="row" style="padding: 8px 10px; border-bottom: solid 1px #000;">
-                        <span flex="85">{{availableOption.value}}</span>
+                        <span flex="85" style="word-wrap:break-word;">{{availableOption.value}}</span>
                         <span flex="15" layout="row" layout-align="center center" class="roundcorner">{{availableOption.count}}</span>
                     </div>
                 </div>

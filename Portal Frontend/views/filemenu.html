@@ -1,7 +1,10 @@
 <div flex layout="row">
     <div layout="column" flex="90" flex-offset="5">
         <div class=" " layout="column">
-            <h2>&nbsp; Welcome {{username}}</h2>
+            <div layout="row" layout-align="end center">
+                <h2>&nbsp; Welcome {{username}}</h2>
+                <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
+            </div>
             <div layout="row" class="md-margin">
                 <div layout="column" flex="40" flex-offset="30" class="md-whiteframe-4dp md-padding whitebg">
                     <div ng-cloak>

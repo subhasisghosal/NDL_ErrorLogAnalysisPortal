@@ -8,6 +8,7 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 	$scope.availableItems = [];
 	$scope.selectedOption = 'informationCode';
 	$scope.collectionName = userInfoService.getCollection()
+	$scope.username = userInfoService.getUserName()
 	$scope.flag = false;
 	
 	// var url = "http://10.146.95.172:3000/api/sourcelevel";
@@ -21,6 +22,12 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 		else if(choice === 'handle')
 			$scope.flag = false;
 	};
+
+	$scope.logout = function(){
+        userInfoService.removeUserInfo()
+        $location.url("/login");
+        return
+    }
 	
 	$scope.getArray = []
 	$scope.getHeader = function () {

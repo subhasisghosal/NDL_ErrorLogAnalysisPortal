@@ -4,6 +4,7 @@ console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
 
     $scope.userData = userInfoService.getUserInfo();
     $scope.username = userInfoService.getUserName()
+    $scope.role = userInfoService.getUserRole()
     $scope.assignments = [{}]
     $scope.users = [{}]
     $scope.sources = [{}]
@@ -19,7 +20,13 @@ console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
     $scope.logList = []
     $scope.selectedBatches = []
 
-    if (!$scope.userData.userid){
+    if (!$scope.userData.userid && !$scope.role==="admin"){
+        $location.url("/login");
+        return
+    }
+
+    $scope.logout = function(){
+        userInfoService.removeUserInfo()
         $location.url("/login");
         return
     }

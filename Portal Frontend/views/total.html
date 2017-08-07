@@ -5,7 +5,15 @@
                 <tr>
                     <td>
                         <div layout="column">
-                            <h2>Total level wise count of Error/Warning</h2>
+                            <div layout="row" layout-align="end center">
+                                <div flex="70">
+                                    <h2>Total level wise count of Error/Warning</h2>
+                                </div>
+                                <div flex="30" layout="row">
+                                    <h4>&nbsp; Logged In as: {{username}}</h4>
+                                    <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
+                                </div>
+                            </div>
                             <hr>
                             <div layout="row">
                                 <div flex>
