@@ -1,7 +1,7 @@
 <div flex layout="row">
     <div layout="column" flex="90" flex-offset="5">
         <div class=" " layout="column">
-            <h2>&nbsp; </h2>
+            <h2>&nbsp; Welcome {{username}}</h2>
             <div layout="row" class="md-margin">
                 <div layout="column" flex="40" flex-offset="30" class="md-whiteframe-4dp md-padding whitebg">
                     <div ng-cloak>
@@ -21,7 +21,7 @@
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
                                                 <!--<input required type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>-->
-                                                <md-select name="type" ng-model="file.batch" required>
+                                                <md-select name="type" ng-model="file.batch">
                                                     <md-option ng-repeat="batch in selectedBatches" value="{{batch}}" ng-click="getComments(file.source,batch)">{{batch}}</md-option>
                                                 </md-select>
                                             </md-input-container>
@@ -64,7 +64,7 @@
                                             <br>
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
-                                                <input required type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>
+                                                <input type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>
                                                 <!-- <md-select name="type" ng-model="project.type" required>
                                                     <md-option value="app">Batch 1 </md-option>
                                                     <md-option value="web">Batch 2 </md-option>
@@ -109,7 +109,7 @@
                                             <br>
                                             <md-input-container class="md-block">
                                                 <label>Select Batch</label>
-                                                <md-select name="type" ng-model="file.batch" required>
+                                                <md-select name="type" ng-model="file.batch">
                                                     <md-option ng-repeat="batch in selectedBatches" value="{{batch}}" ng-click="getComments(file.source,batch)">{{batch}}</md-option>
                                                 </md-select>
                                             </md-input-container>
@@ -119,7 +119,7 @@
                                                 </textarea>
                                             </md-input-container>
                                             <div layout="row" layout-align="start center">
-                                                <md-button class="md-raised md-primary" ng-click="deleteLog()">Delete</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="deleteLog($event)">Delete</md-button>
                                             </div>
                                             <p> </p>
                                         </form>

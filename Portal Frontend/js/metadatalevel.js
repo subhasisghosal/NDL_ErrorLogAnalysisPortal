@@ -16,6 +16,8 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 	var url = config.serverUrl + "/api/metadatalevel"
 	$scope.setChoice = function(choice){
 		$scope.selectedOption = choice;
+		$scope.availableItems = []
+		$scope.availableOptions = []
 		if(choice == 'informationCode')
 			$scope.flag = true;
 		else if(choice == 'fieldName')

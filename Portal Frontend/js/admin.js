@@ -1,5 +1,9 @@
-logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location, $http, config) {
+logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService, $mdDialog) {
 
+console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
+
+    $scope.userData = userInfoService.getUserInfo();
+    $scope.username = userInfoService.getUserName()
     $scope.assignments = [{}]
     $scope.users = [{}]
     $scope.sources = [{}]
@@ -12,6 +16,42 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
     $scope.removal = {}
     $scope.editFlag = []
     $scope.editUserFlag = []
+    $scope.logList = []
+    $scope.selectedBatches = []
+
+    if (!$scope.userData.userid){
+        $location.url("/login");
+        return
+    }
+
+    $scope.loadLogs = function(){
+        $http.get(config.serverUrl + "/admin/getAllLogs")
+        .then(function(response) {            
+            $scope.logList = response.data
+            console.log($scope.logList)
+        })
+    }
+
+    $scope.showLogReports = function(){
+        userInfoService.setCollection($scope.selectedFile.collectionName)
+        $location.url("reportshome")
+    }
+
+    $scope.getBatches = function(source){
+        for(var i in $scope.logList){
+            if($scope.logList[i].sourceCode === source)
+                $scope.selectedBatches.push($scope.logList[i].batch)
+        }
+    }
+
+    $scope.getComments = function(source, batch){
+        for(var i in $scope.logList){
+            if($scope.logList[i].sourceCode === source && $scope.logList[i].batch === batch){
+                $scope.comments = $scope.logList[i].comments
+                $scope.selectedFile = $scope.logList[i]
+            }
+        }
+    }
 
     $scope.onChange = function(cbState) {
         $scope.ifActive.isActive = cbState.isActive;
@@ -55,13 +95,23 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
             })
     }
 
-    $scope.createSource = function() {
+    $scope.createSource = function(ev) {
         var data = { source: JSON.stringify($scope.sources) }
         console.log(data)
         var responsePromise = $http.post(config.serverUrl + "/admin/addsource", data);
         responsePromise.then(function(response) {
             console.log(response)
-            $scope.sources = [{}]
+            $scope.sources = [{}]           
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Added Source')
+                .textContent('Source(s) Added Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            )
             $scope.$apply()
         })
     }
@@ -76,7 +126,7 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
             })
     }
 
-    $scope.registerUser = function() {
+    $scope.registerUser = function(ev) {
         // console.log(JSON.stringify($scope.users))
         var data = { data: JSON.stringify($scope.users) }
         console.log(data)
@@ -84,11 +134,21 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
         responsePromise.then(function(response) {
             console.log(response)
             $scope.users = [{}]
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Added User')
+                .textContent('User(s) Added Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            )
             $scope.$apply()
         })
     }
 
-    $scope.assignTask = function() {
+    $scope.assignTask = function(ev) {
         console.log(JSON.stringify($scope.assignments))
         var data = { data: JSON.stringify($scope.assignments) }
         // console.log(data)
@@ -96,7 +156,17 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
         responsePromise.then(function(response) {
             console.log(response)
             // $scope.assignments = [{}]
-            // $scope.$apply()
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Assigned')
+                .textContent('Task Assigned Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            )
+            $scope.$apply()
         })
     }
 
@@ -196,22 +266,69 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
         $scope.editUserFlag[index] = true
     }
 
-    $scope.saveUser = function(index){
+    $scope.saveUser = function(index,ev){
         console.log("Saved User for Edit: "+JSON.stringify($scope.userInfo[index]))
         $http.post(config.serverUrl + "/admin/editUser", $scope.userInfo[index])
         .then(function(response) {
             console.log(response)
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Edited User')
+                .textContent('User Modified Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            )
             $scope.editUserFlag[index] = false
         })
     }
 
-    $scope.deleteUser = function(index){
+    $scope.deleteUser = function(index,ev){
         console.log("Selected User for Delete is: "+JSON.stringify($scope.userInfo[index]))
-        var responsePromise = $http.post(config.serverUrl + "/admin/deleteUser", {'userId':$scope.userInfo[index].userId})
-        responsePromise.then(function(response) {
-            delete $scope.userInfo[index]
-            console.log(response)
-        })
+        var confirm = $mdDialog.confirm()
+          .title('Do you really want to delete the User?')
+          .textContent('Please check before deleting.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Delete')
+          .cancel('Don\'t Delete');
+
+        $mdDialog.show(confirm).then(function() {
+          var responsePromise = $http.post(config.serverUrl + "/admin/deleteUser", {'userId':$scope.userInfo[index].userId})
+            responsePromise.then(function(response) {
+                delete $scope.userInfo[index]
+                console.log(response)
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Deleted User')
+                    .textContent('User Deleted Successfully')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    .targetEvent(ev)
+                )
+            })
+        }, function() {
+          $scope.status = 'You decided to not delete.';
+        });
+        // var responsePromise = $http.post(config.serverUrl + "/admin/deleteUser", {'userId':$scope.userInfo[index].userId})
+        // responsePromise.then(function(response) {
+        //     delete $scope.userInfo[index]
+        //     console.log(response)
+        //     $mdDialog.show(
+        //       $mdDialog.alert()
+        //         .parent(angular.element(document.querySelector('#popupContainer')))
+        //         .clickOutsideToClose(true)
+        //         .title('Deleted User')
+        //         .textContent('User Deleted Successfully')
+        //         .ariaLabel('Alert Dialog Demo')
+        //         .ok('Got it!')
+        //         .targetEvent(ev)
+        //     )
+        // })
     }
 
     $scope.editSource = function(index){
@@ -219,21 +336,53 @@ logApp.controller('adminCtrl', function($rootScope, $scope, $timeout, $location,
         $scope.editFlag[index] = true
     }
 
-    $scope.saveSource = function(index){
+    $scope.saveSource = function(index,ev){
         console.log("Saved Source for Edit: "+JSON.stringify($scope.sourceInfo[index]))
         $http.post(config.serverUrl + "/admin/editSource", $scope.sourceInfo[index])
         .then(function(response) {
             console.log(response)
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Edited Source')
+                .textContent('Source Modified Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            )
             $scope.editFlag[index] = false
         })
     }
 
-    $scope.deleteSource = function(index){
+    $scope.deleteSource = function(index,ev){
         console.log("Selected Source for Delete is: "+JSON.stringify($scope.sourceInfo[index]))
-        var responsePromise = $http.post(config.serverUrl + "/admin/deleteSource", {'sourceCode':$scope.sourceInfo[index].sourceCode})
-        responsePromise.then(function(response) {
-            delete $scope.sourceInfo[index]
-            console.log(response)
-        })
+        var confirm = $mdDialog.confirm()
+          .title('Do you really want to delete the Source?')
+          .textContent('Please check before deleting.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Delete')
+          .cancel('Don\'t Delete');
+
+        $mdDialog.show(confirm).then(function() {
+          var responsePromise = $http.post(config.serverUrl + "/admin/deleteSource", {'sourceCode':$scope.sourceInfo[index].sourceCode})
+            responsePromise.then(function(response) {
+                delete $scope.sourceInfo[index]
+                console.log(response)
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Deleted Source')
+                    .textContent('Source Deleted Successfully')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    .targetEvent(ev)
+                )
+            })
+        }, function() {
+          $scope.status = 'You decided to not delete.';
+        });
     }
 });

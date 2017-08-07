@@ -10,10 +10,13 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 	$scope.collectionName = userInfoService.getCollection()
 	$scope.flag = 0;
 	
+	console.log($scope.collectionName)
 	// var url = "http://10.146.95.172:3000/api/itemlevel";
 	var url = config.serverUrl + "/api/itemlevel"
 	$scope.setChoice = function(choice){
 		$scope.selectedOption = choice;
+		$scope.availableItems = []
+		$scope.availableOptions = []
 		if(choice === 'informationCode')
 			$scope.flag = 1;
 		else if(choice === 'fieldName')
@@ -34,7 +37,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 				"collectionName": $scope.collectionName,
 				"choice": $scope.selectedOption,
 				"informationCode": "NULL",
-				"fieldName" : "NULL"
+				"fieldName" : "NULL",
+				"fieldValue" : "NULL"
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.success(function(data, status, headers, config) {
@@ -58,7 +62,34 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 				"collectionName": $scope.collectionName,
 				"choice": $scope.selectedOption,
 				"informationCode": "NULL",
-				"fieldName" : "NULL"
+				"fieldName" : "NULL",
+				"fieldValue" : "NULL"
+			};
+			var responsePromise = $http.post(url,data);
+			responsePromise.success(function(data, status, headers) {
+                    var availabledata = data.item;	
+					for(var i=0;i<availabledata.length;i++){
+						$scope.availableOptions.push({ value : availabledata[i].name, isAttempted : false, count : availabledata[i].count  });
+					}
+
+                });
+            responsePromise.error(function(data, status, headers) {
+                    alert("AJAX failed!");
+                });
+				$scope.leftListObtained = true;
+				
+		} else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'fieldValue'){
+//		} else if ($scope.selectedList.length === 0 && $scope.selectedOption === 'fieldName'){
+			$scope.availableOptions = [];
+			$scope.selectedList = [];
+			$scope.availableItems = [];
+
+			var data = {
+				"collectionName": $scope.collectionName,
+				"choice": $scope.selectedOption,
+				"informationCode": "NULL",
+				"fieldName" : "NULL",
+				"fieldValue" : "NULL"
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.success(function(data, status, headers) {
@@ -93,7 +124,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 				"choice": $scope.selectedOption,
 				"informationCode": "NULL",
 				"pageToken" : 1,
-				"fieldName" : fieldNameValue
+				"fieldName" : fieldNameValue,
+				"fieldValue" : "NULL"
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.success(function(data, status, headers) {
@@ -128,7 +160,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 				"choice": $scope.selectedOption,
 				"informationCode": "NULL",
 				"pageToken" : 1,
-				"fieldName" : fieldNameValue
+				"fieldValue" : fieldNameValue,
+				"fieldName" : "NULL"
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.success(function(data, status, headers) {
@@ -162,7 +195,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 				"choice": $scope.selectedOption,
 				"informationCode": infoCodeValue ,
 				"pageToken" : 1,
-				"fieldName" : "NULL"
+				"fieldName" : "NULL",
+				"fieldValue" : "NULL"
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.success(function(data, status, headers) {

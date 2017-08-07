@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" md-api-table">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="md-api-table">
                             <tbody>
                                 <tr>
                                     <th width="33%"> </th>
@@ -52,7 +52,7 @@
             </tbody>
         </table>
         <div layout="row">
-            <div layout="column" flex="30">
+            <div layout="column" flex="30" class="scrollable">
                 <div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
                     <div ng-class="(availableOption.isAttempted === true)?'pressed':'nonpressed'" layout="row" style="padding: 8px 10px; border-bottom: solid 1px #000;">
                         <span flex="85">{{availableOption.value}}</span>
@@ -62,19 +62,39 @@
             </div>
             <div ng-if="rightListObtained === true" layout="column" flex="70">
                 <!--table-->
-                <div ng-if="true">
+                <div ng-if="flag == 1 && (availableItems.length > 0)" layout="row" class="heading">
+                    <span flex>Field Name</span>
+                </div>
+                <div ng-if="flag == 2 && (availableItems.length > 0)" layout="row" class="heading">
+                    <span flex="25">Handle ID</span>
+                    <span flex="65">Field Value</span>
+                    <span flex="10">Count</span>
+                </div>
+                <div ng-if="flag == 3 && (availableItems.length > 0)" layout="row" class="heading">
+                    <span flex="25">Handle ID</span>
+                    <span flex="65">Field Name</span>
+                    <span flex="10">Count</span>
+                </div>
+                <div ng-if="true" class="scrollable">
                     <div ng-repeat="availableItem in availableItems" layout="column" style="padding-left: 15px;">
                         <!--tr-->
                         <!--Need to implement table structure using span and div-->
-                        <div ng-if="flag === true" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
-                            <span flex="25"><!--td-->{{availableItem}}<!--/td--></span>
+                        <div ng-if="flag == 1" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
+                            <span flex><!--td-->{{availableItem}}<!--/td--></span>
                         </div>
-                        <div ng-if="flag === false" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
+                        <div ng-if="flag == 2" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
                             <span flex="25"><!--td-->{{availableItem.handleId}}<!--/td--></span>
                             <span flex="65"><!--td-->
                               <div ng-repeat="value in availableItem.fieldvalue track by $index">{{value}}</div>
                             </span>
                             <span flex="10"><!--td-->{{availableItem.fieldvalue.length}}<!--/td--></span>
+                        </div>
+                        <div ng-if="flag == 3" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
+                            <span flex="25"><!--td-->{{availableItem.handleId}}<!--/td--></span>
+                            <span flex="65"><!--td-->
+                              <div ng-repeat="value in availableItem.fieldname track by $index">{{value}}</div>
+                            </span>
+                            <span flex="10"><!--td-->{{availableItem.fieldname.length}}<!--/td--></span>
                         </div>
                         <!--/tr-->
                     </div>

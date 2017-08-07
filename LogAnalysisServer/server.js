@@ -9,8 +9,8 @@ var session = require('express-session')
 }
 */
 var mongoose = require('mongoose')
-// mongoose.connect('mongodb://10.17.14.26:27017/ndl')
-mongoose.connect('mongodb://localhost:27017/ndl')
+mongoose.connect('mongodb://10.17.14.26:27017/ndl')
+// mongoose.connect('mongodb://localhost:27017/ndl')
 
 var fileUpload = require('express-fileupload')
 app.use(fileUpload())
@@ -330,6 +330,7 @@ app.post('/api/itemlevel', function(req, res) {
     var pageToken = parseInt(req.body.pageToken)
     var choice = req.body.choice
     var fieldName = req.body.fieldName
+    var fieldValue = req.body.fieldValue
     var infoCode = req.body.informationCode
     console.log(collectionName)
     var itemDemo = mongoose.model('itemDemo', itemSchema, collectionName)
@@ -455,6 +456,77 @@ app.post('/api/itemlevel', function(req, res) {
                     })
                 })
                 .where("fields.fieldName").in(fieldName)
+        }
+    } else if (choice === "fieldValue") {
+        if (fieldValue === "NULL") {
+            itemDemo.find(qs)
+                .distinct("fields.fieldValue", function(err, items) {
+                    if (err) throw err;
+                    console.log(items)
+                    var resObj = { item: [] }
+                    async.eachSeries(items, function(item, calback) {
+                        getCount = function(q, callback) {
+                            itemDemo.find(q)
+                                .where("fields.fieldValue").equals(item)
+                                .count(function(err, cnt) {
+                                    resObj.item.push({ "name": item, "count": cnt })
+                                    callback && callback(resObj)
+                                })
+                        }
+                        getCount(qs, function(data) {
+                            calback()
+                        });
+                    }, function(err) {
+                        if (err) throw err
+                        console.log("Done")
+                        res.send(resObj)
+                    })
+                })
+        } else {
+            fieldValue = JSON.parse("[" + fieldValue + "]")
+            itemDemo.find(qs, function(err, items) {
+                    if (err) throw err
+                    var resObj = { infoCode: [], item: [] }
+                    // console.dir(items)
+                    async.eachSeries(items, function(item, calback) {
+                        // console.log(item)
+                        resObj.infoCode.push(item.informationCode)
+                        calback()
+                    }, function(err) {
+                        if (err) throw err
+                        console.log("Done")
+                        unique(resObj.infoCode)
+                        itemDemo.find(qs, function(err, items) {
+                                // console.log(items)
+                                async.eachSeries(items, function(info, callback) {
+                                    console.dir(info.fields)
+                                    var fv = []
+                                    async.eachSeries(info.fields, function(fields, callbck) {
+                                        // console.log(info)
+                                        console.dir(fields)
+                                        fv.push(fields.fieldName)
+
+                                        callbck()
+                                    }, function(err) {
+                                        if (err) throw err
+                                        console.log("Done3")
+                                        resObj.item.push({
+                                            "handleId": info.handle,
+                                            "fieldname": unique(fv),
+                                        })
+                                        // res.send(resObj)
+                                    })
+                                    callback()
+                                }, function(err) {
+                                    if (err) throw err
+                                    console.log("Done2")
+                                    res.send(resObj)
+                                })
+                            })
+                            .where("informationCode").in(resObj.infoCode)
+                    })
+                })
+                .where("fields.fieldValue").in(fieldValue)
         }
     }
 })
@@ -896,6 +968,14 @@ app.get('/admin/getsources', function(req, res) {
     }).sort('sourceCode')
 })
 
+app.get('/admin/getAllLogs', function(req, res) {
+    var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
+    uploadLog.find(function(err, items) {
+        console.log(items)
+        res.send(items)
+    }).sort('sourceCode')
+})
+
 app.post('/admin/adduser', function(req, res) {
     var users = JSON.parse(req.body.data)
     var userDemo = mongoose.model('user', userSchema, 'userMaster')
@@ -959,12 +1039,23 @@ app.post('/admin/assigntask', function(req, res) {
 
     async.eachSeries(tasks, function(item, callback) {
         console.log(item)
-        sourceUser.update({ 'sourceCode': item.source }, { $push: { 'userIds': { 'uId': item.user, 'isActive': true } } }, function(err, result) {
-            if (err) return console.error(err)
-        })
-        userSource.update({ 'userId': item.user }, { $push: { 'sourceCodes': { 'code': item.source, 'isActive': true } } }, function(err, result) {
-            if (err) return console.error(err)
-        })
+        sourceUser.find({ 'sourceCode': item.source, 'userIds': { $elemMatch: { 'uId': item.user } } }).exec(function(err,records1){
+            if (records1.length==0) {
+                console.log("No Entry")
+                userSource.find({ 'userId': item.user, 'sourceCodes': { $elemMatch: { 'code': item.source } } }).exec(function(err,records2){
+                    console.log(records2)
+                    if (records2.length==0) {
+                        console.log("No Entry Also")
+                        sourceUser.update({ 'sourceCode': item.source }, { $push: { 'userIds': { 'uId': item.user, 'isActive': true } } }, function(err, result) {
+                            if (err) return console.error(err)
+                        })
+                        userSource.update({ 'userId': item.user }, { $push: { 'sourceCodes': { 'code': item.source, 'isActive': true } } }, function(err, result) {
+                            if (err) return console.error(err)
+                        })
+                    }
+                })
+            }
+        })        
         callback()
     }, function(err) {
         if (err) throw err
@@ -1072,9 +1163,13 @@ app.post('/admin/deleteAssignment', function(req, res) {
 app.post('/admin/deleteSource', function(req, res) {
     var source = req.body.sourceCode
     var dataSource = mongoose.model('dataSource', dataSourceSchema, 'dataSources')
+    var sourceUser = mongoose.model('sourceUser', sourceUserSchema)
     dataSource.find({'sourceCode':source}).remove(function(err, items) {
         console.log(items)
-        res.send("Source Deleted")
+        sourceUser.find({'sourceCode':source}).remove(function(err, items) {
+            console.log(items)
+            res.send("Source Deleted")
+        })
     })
 })
 
@@ -1091,10 +1186,15 @@ app.post('/admin/editSource', function(req, res) {
 app.post('/admin/deleteUser', function(req, res) {
     var user = req.body.userId
     var userDemo = mongoose.model('user', userSchema, 'userMaster')
+    var userSource = mongoose.model('userSource', userSourceSchema)
     userDemo.find({'userId':user}).remove(function(err, items) {
         console.log(items)
-        res.send("User Deleted")
+        userSource.find({'userId':user}).remove(function(err, items) {
+            console.log(items)
+            res.send("User Deleted")
+        })
     })
+
 })
 
 app.post('/admin/editUser', function(req, res) {
@@ -1114,7 +1214,7 @@ app.post('/admin/editUser', function(req, res) {
 app.post('/users/getRole', function(req, res) {
     var user = req.body.userId
     var userDemo = mongoose.model('user', userSchema, 'userMaster')
-    userDemo.findOne({'userId':user}).select('role').exec(function(err, role){
+    userDemo.findOne({'userId':user}).exec(function(err, role){
         res.send(role)
     })
 })

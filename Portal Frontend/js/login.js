@@ -4,7 +4,7 @@ logApp.controller('loginControl', function($rootScope, $scope, $timeout, $locati
         userId:"",
         password:""
     }
-    var url = "http://localhost:3000/users/authenticate";
+    var url = config.serverUrl + "/users/authenticate";
     $scope.goToRegisterForm = function(){
         $location.url("register");
     };
@@ -18,9 +18,11 @@ logApp.controller('loginControl', function($rootScope, $scope, $timeout, $locati
                 // $rootScope.data = response.data;
                 userInfoService.setUserInfo(response.data)
                 // console.log($rootScope.data)
-                $http.post("http://localhost:3000/users/getRole",{'userId':response.data.userid})
+                $http.post(config.serverUrl + "/users/getRole",{'userId':response.data.userid})
                 .then(function(response){
                     var role = response.data.role
+                    var name = response.data.firstName + " " + response.data.lastName
+                    userInfoService.setUserName(name)
                     if(role)
                         userInfoService.setUserRole(role)
                     if(role === "admin")

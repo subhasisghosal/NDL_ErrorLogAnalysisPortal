@@ -1,5 +1,5 @@
 // var logApp = angular.module('logAnalysisApp', ['ngMaterial','lfNgMdFileInput','ngRoute']);
-logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService) {
+logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $location, $http, config, userInfoService, $mdDialog) {
 
     // $scope.userData = $rootScope.data;
     console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));    
@@ -7,6 +7,7 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
 
 
     $scope.userData = userInfoService.getUserInfo();
+    $scope.username = userInfoService.getUserName()
     $scope.sourceList = []
     $scope.selectedBatches = []
 
@@ -44,9 +45,10 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
 
     $scope.getComments = function(source, batch){
         for(var i in $scope.userData.uploads){
-            if($scope.userData.uploads[i].sourceCode === source && $scope.userData.uploads[i].batch === batch)
+            if($scope.userData.uploads[i].sourceCode === source && $scope.userData.uploads[i].batch === batch){
                 $scope.comments = $scope.userData.uploads[i].comments
                 $scope.selectedFile = $scope.userData.uploads[i]
+            }
         }
     }
 
@@ -68,7 +70,17 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
         console.log($scope.file)
         $http.post(config.serverUrl + "/api/deleteLog", $scope.file)
             .then(function(response){
-
+                console.log(response)
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Deleted Log')
+                    .textContent('Log Entry Deleted Successfully')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    .targetEvent(ev)
+                )
             })
     }
 

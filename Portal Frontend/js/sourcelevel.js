@@ -13,6 +13,8 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 	// var url = "http://10.146.95.172:3000/api/sourcelevel";
 	var url = config.serverUrl + "/api/sourcelevel"
 	$scope.setChoice = function(choice){
+		$scope.availableItems = []
+		$scope.availableOptions = []
 		$scope.selectedOption = choice;
 		if(choice === 'informationCode')
 			$scope.flag = true;

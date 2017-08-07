@@ -1,11 +1,11 @@
 <div flex layout="row">
     <div layout="column" flex="90" flex-offset="5">
         <div class=" " layout="column">
-            <h2>&nbsp; </h2>
+            <h2>&nbsp; Welcome {{username}}</h2>
             <div layout="row" class="md-margin">
-                <div layout="column" flex="80" flex-offset="10" class="md-whiteframe-4dp md-padding whitebg">
+                <div layout="column" flex="80" flex-offset="10" class="md-whiteframe-4dp md-padding whitebg" style="overflow-y:scroll">
                     <div ng-cloak>
-                        <md-content>
+                        <md-content id="popupContainer">
                             <md-tabs md-dynamic-height md-border-bottom>
                                 <md-tab label="Source">
                                     <md-content class="md-padding">
@@ -32,7 +32,7 @@
                                                             </md-input-container>
                                                         </div>
                                                         <div layout="row" layout-align="right">
-                                                            <md-button class="md-raised md-primary" ng-click="createSource()">Save</md-button>
+                                                            <md-button class="md-raised md-primary" ng-click="createSource($event)">Save</md-button>
                                                         </div>
                                                         <p> </p>
                                                     </form>
@@ -58,9 +58,9 @@
                                                             <td md-cell ng-if="!editFlag[$index]">{{source.sourceName}}</td>
                                                             <td md-cell ng-if="editFlag[$index]"><input id="srcname_{{$index}}" ng-model="source.sourceName"></td>
                                                             <td md-cell>
-                                                                <md-button ng-if="!editFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editSource($index)">Edit</md-button><md-button ng-if="editFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveSource($index)">Save</md-button>
+                                                                <md-button ng-if="!editFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editSource($index)">Edit</md-button><md-button ng-if="editFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveSource($index,$event)">Save</md-button>
                                                             </td>
-                                                            <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteSource($index)">Delete</md-button></td>
+                                                            <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteSource($index,$event)">Delete</md-button></td>
                                                           </tr>
                                                         </tbody>
                                                       </table>
@@ -110,7 +110,7 @@
                                                             </md-input-container>
                                                         </div>
                                                         <div layout="row" layout-align="right">
-                                                            <md-button class="md-raised md-primary" ng-click="registerUser()">Save</md-button>
+                                                            <md-button class="md-raised md-primary" ng-click="registerUser($event)">Save</md-button>
                                                         </div>
                                                         <p> </p>
                                                     </form>
@@ -124,7 +124,7 @@
                                                         </div> -->
                                                         <md-table-container layout="row">
                                                           <table flex="100" md-table md-row-select multiple ng-model="selected" md-progress="promise" class="md-api-table" ng-if="userInfo.length > 0">
-                                                            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                                                            <thead md-head md-order="user.lastName" md-on-reorder="">
                                                               <tr md-row>
                                                                 <th md-column md-numeric>User Id</th>
                                                                 <th md-column md-numeric>First Name</th>
@@ -148,9 +148,9 @@
                                                                     </md-select>
                                                                 </td>
                                                                 <td md-cell>
-                                                                    <md-button ng-if="!editUserFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editUser($index)">Edit</md-button><md-button ng-if="editUserFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveUser($index)">Save</md-button>
+                                                                    <md-button ng-if="!editUserFlag[$index]" class="md-raised md-primary md-small-button" ng-click="editUser($index)">Edit</md-button><md-button ng-if="editUserFlag[$index]" class="md-raised md-cornered md-small-button" ng-click="saveUser($index,$event)">Save</md-button>
                                                                 </td>
-                                                                <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteUser($index)">Delete</md-button></td>
+                                                                <td md-cell><md-button class="md-raised md-warn md-small-button" ng-click="deleteUser($index,$event)">Delete</md-button></td>
                                                               </tr>
                                                             </tbody>
                                                           </table>
@@ -190,7 +190,7 @@
                                                             </md-input-container>
                                                         </div>
                                                         <div layout="row" layout-align="right">
-                                                            <md-button class="md-raised md-primary" ng-click="assignTask()">Assign</md-button>
+                                                            <md-button class="md-raised md-primary" ng-click="assignTask($event)">Assign</md-button>
                                                         </div>
                                                         <p> </p>
                                                     </form>
@@ -243,7 +243,7 @@
                                         </md-tabs>
                                     </md-content>
                                 </md-tab>
-                                <md-tab label="Logs">
+                                <md-tab label="Logs" ng-click="loadLogs()">
                                     <md-content class="md-padding">
                                         <md-tabs md-dynamic-height md-border-bottom>
                                             <md-tab label="View log">
@@ -253,14 +253,14 @@
                                                         <md-input-container class="md-block" flex>
                                                             <label>Source</label>
                                                             <md-select name="source" ng-model="file.source">
-                                                                <md-option ng-repeat="source in sourceList" value="{{source}}" ng-click="getBatches(source)">{{source}}</md-option>
+                                                                <md-option ng-repeat="source in logList" value="{{source.sourceCode}}" ng-click="getBatches(source.sourceCode)">{{source.sourceCode}}</md-option>
                                                             </md-select>
                                                         </md-input-container>
                                                         <br>
                                                         <md-input-container class="md-block">
                                                             <label>Select Batch</label>
                                                             <!--<input required type="number" step="any" name="rate" ng-model="file.batch" min="1" max="100"/>-->
-                                                            <md-select name="type" ng-model="file.batch" required>
+                                                            <md-select name="type" ng-model="file.batch">
                                                                 <md-option ng-repeat="batch in selectedBatches" value="{{batch}}" ng-click="getComments(file.source,batch)">{{batch}}</md-option>
                                                             </md-select>
                                                         </md-input-container>
