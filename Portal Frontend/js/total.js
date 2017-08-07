@@ -66,6 +66,7 @@ console.log($scope.collectionName)
 	$scope.submitList = function(){
 			//$http.post(){}
 			$scope.availableItems=[];
+			$scope.getArray = []
 			var data = {
 				"collectionName": $scope.collectionName,
 				"level": $scope.selectedOptionlevel,

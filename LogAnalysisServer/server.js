@@ -9,8 +9,8 @@ var session = require('express-session')
 }
 */
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://10.17.14.26:27017/ndl')
-// mongoose.connect('mongodb://localhost:27017/ndl')
+// mongoose.connect('mongodb://10.17.14.26:27017/ndl')
+mongoose.connect('mongodb://localhost:27017/ndl')
 
 var fileUpload = require('express-fileupload')
 app.use(fileUpload())

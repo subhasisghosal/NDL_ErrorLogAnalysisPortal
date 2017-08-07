@@ -37,7 +37,7 @@
                                     <th width="33%"> </th>
                                     <th width="33%" layout-align="center center">
                                         <div ng-if="(availableItems.length > 0) === true" class="csvButton" layout="row" layout-align="center center">
-                                            <md-button class="md-raised" ng-click="generateCSV();">Generate CSV </md-button>
+                                            <md-button class="md-raised" ng-csv="getArray" csv-header="getHeader()" filename="MetadataReport.csv">Generate CSV </md-button>
                                         </div>
                                     </th>
                                     <th width="33%"> </th>

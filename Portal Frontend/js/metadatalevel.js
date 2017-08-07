@@ -24,8 +24,17 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 			$scope.flag = false;
 	};
 	
+	$scope.getArray = []
+	$scope.getHeader = function () {
+		if ($scope.flag)
+			return ["Field Name", "Field Value", "Handle ID"]
+		else
+			return ["Information Code", "Field Value", "Handle ID"]
+	}
+
 	$scope.submitList = function(){
 			//$http.post(){}
+		$scope.getArray = []
 		if(($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'informationCode'){
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
@@ -102,8 +111,16 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 			};
 			var responsePromise = $http.post(url,data);
 			responsePromise.then(function(response) {
-                     $scope.availableItems = response.data.items;	
-					 //console.log($scope.availableItems);
+                     $scope.availableItems = response.data.items;
+                     // $scope.getArray = response.data.items;
+                     for (var i in $scope.availableItems) {
+                     	console.log($scope.availableItems[i])
+                     	$scope.getArray.push({
+                     		'informationCode': $scope.availableItems[i].informationCode,
+                     		'fieldValue': $scope.availableItems[i].fieldvalue,
+                     		'handle': $scope.availableItems[i].handleId
+                     	})
+                     }
                 });
             
 				$scope.leftListObtained = true;
@@ -133,7 +150,16 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 			var responsePromise = $http.post(url,data);
 			responsePromise.then(function(response) {
                      $scope.availableItems = response.data.items;	
-					 //console.log($scope.availableItems);
+                     // $scope.getArray = response.data.items;
+                     for (var i in $scope.availableItems) {
+                     	console.log($scope.availableItems[i])
+                     	$scope.getArray.push({
+                     		'fieldName': $scope.availableItems[i].fieldName,
+                     		'fieldValue': $scope.availableItems[i].fieldvalue,
+                     		'handle': $scope.availableItems[i].handleId
+                     	})
+                     }
+					 // console.log($scope.getArray);
                 });
             
 				$scope.leftListObtained = true;

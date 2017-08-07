@@ -22,8 +22,17 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 			$scope.flag = false;
 	};
 	
+	$scope.getArray = []
+	$scope.getHeader = function () {
+		if ($scope.flag)
+			return ["Count", "Handle IDs", "Information Code"]
+		else
+			return ["Information Code"]
+	}
+
 	$scope.submitList = function(){
 			//$http.post(){}
+		$scope.getArray = []
 		if(($scope.selectedList.length === 0 || $scope.prevchoice === 'handle') && $scope.selectedOption === 'informationCode'){
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
@@ -95,7 +104,14 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 			var responsePromise = $http.post(url,data);
 			responsePromise.then(function(response) {
                      $scope.availableItems = response.data.items;	
-					 console.log($scope.availableItems);
+					 // console.log($scope.availableItems);
+					 // $scope.getArray = $scope.availableItems
+					 for (var i in $scope.availableItems) {
+                     	console.log($scope.availableItems[i])
+                     	$scope.getArray.push({
+                     		'informationCode': $scope.availableItems[i]
+                     	})
+                     }
                 });
             
 				$scope.leftListObtained = true;
@@ -127,7 +143,18 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 //                     $scope.availableItems = response.data.handles;
 					console.dir(response.data.items);
 					$scope.availableItems = response.data.items;
-					 console.log($scope.availableItems);
+					for (var i in $scope.availableItems) {
+                     	console.log($scope.availableItems[i])
+                     	var handles=""
+                     	for(var j in $scope.availableItems[i].handleId)
+                     		handles += $scope.availableItems[i].handleId[j] + " | "
+                     	handles = handles.substring(0, handles.length - 3);
+                     	$scope.getArray.push({
+                     		'count': $scope.availableItems[i].handleId.length,
+                     		'handleIDs': handles,
+                     		'informationCode': $scope.availableItems[i].informationCode
+                     	})
+                     }
                 });
             
 				$scope.leftListObtained = true;
