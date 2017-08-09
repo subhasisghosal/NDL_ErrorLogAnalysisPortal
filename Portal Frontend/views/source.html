@@ -100,7 +100,7 @@
                         <!--tr-->
                         <!--Need to implement table structure using span and div-->
                         <div ng-if="flag === true" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
-                            <span flex="20"><!--td-->count: {{availableItem.handleId.length}}<!--/td--></span>
+                            <span flex="20"><!--td-->{{availableItem.handleId.length}}<!--/td--></span>
                             <span flex="50">
                                 <md-select name="handle" ng-model="handle" placeholder="{{availableItem.handleId[0]}}">
                                     <md-option ng-repeat="handle in availableItem.handleId track by $index" value="{{handle}}">{{handle}}</md-option>

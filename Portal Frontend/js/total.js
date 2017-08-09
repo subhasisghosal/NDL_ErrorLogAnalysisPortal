@@ -10,7 +10,7 @@ logApp.controller('totalCtrl', function($rootScope, $scope, $timeout, $location,
 
 	$scope.availableItems = [];
 	$scope.collectionName = userInfoService.getCollection()
-	
+	$scope.showSpinner = false
 	$scope.levels = [];
 	$scope.levels.push({name: "All", value:"all",isAttempted: false});
 	$scope.levels.push({name: "Item Level", value:"itemLevel", isAttempted:false});
@@ -73,6 +73,7 @@ console.log($scope.collectionName)
 	$scope.getHeader = function () {return ["Information Code", "Level", "Count"]};
 	$scope.submitList = function(){
 			//$http.post(){}
+			$scope.showSpinner = true
 			$scope.availableItems=[];
 			$scope.getArray = []
 			var data = {
@@ -90,6 +91,7 @@ console.log($scope.collectionName)
 						$scope.getArray.push({ value : availabledata[i].name, level : $scope.getLevelName(availabledata[i].level), count : availabledata[i].count});
 					}
 					console.log(JSON.parse(angular.toJson($scope.availableItems)));
+					$scope.showSpinner = false
                 });
 				
 	};

@@ -60,7 +60,8 @@ table {
 }
 
 .pressed span:last-child {
-    color: #6D6D6D
+    /*color: #6D6D6D*/
+    color: #fff;
 }
 
 .nonpressed {

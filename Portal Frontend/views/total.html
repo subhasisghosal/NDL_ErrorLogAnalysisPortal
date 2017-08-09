@@ -1,5 +1,10 @@
 <div flex layout="row">
     <div layout="column" flex="90" flex-offset="5">
+        <div class="modal-bg" ng-if="showSpinner" layout="column" layout-align="center center">
+            <div layout="row" layout-align="center center">
+                <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+            </div>
+        </div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
