@@ -12,6 +12,10 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 	$scope.showSpinner = false
     $scope.showBar = false
 	
+	if (!$scope.username){
+        $location.url("/login");
+        return
+    }
 	// var url = "http://10.146.95.172:3000/api/sourcelevel";
 	var url = config.serverUrl + "/api/sourcelevel"
 	$scope.setChoice = function(choice){

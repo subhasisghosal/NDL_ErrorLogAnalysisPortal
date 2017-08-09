@@ -20,7 +20,7 @@ console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
     $scope.logList = []
     $scope.selectedBatches = []
 
-    if (!$scope.userData.userid && !$scope.role==="admin"){
+    if (!$scope.userData.userid && !($scope.role==="admin")){
         $location.url("/login");
         return
     }
@@ -173,6 +173,8 @@ console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
                 .ok('Got it!')
                 .targetEvent(ev)
             )
+            $scope.assignments = []        
+            $scope.addAssignments()
             $scope.$apply()
         })
     }
@@ -247,29 +249,46 @@ console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
         $scope.ifActive.isActive = item.isActive
     }
 
-    $scope.removeChip = function(index) {
-        if ($scope.removal.userId) {
-            $scope.removal.source = $scope.backupChip[index]
-            $scope.removal.removeSource = true;
+    $scope.removeChip = function(index,ev) {
+        var confirm = $mdDialog.confirm()
+          .title('Do you really want to Delete?')
+          .textContent('Please check before deleting.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Delete')
+          .cancel('Don\'t Delete');
 
-        } else {
-            $scope.removal.userId = $scope.backupChip[index]
-            $scope.removal.removeId = true;
+        $mdDialog.show(confirm).then(function() {
+            if ($scope.removal.userId) {
+                $scope.removal.source = $scope.backupChip[index]
+                $scope.removal.removeSource = true;
 
-        }
+            } else {
+                $scope.removal.userId = $scope.backupChip[index]
+                $scope.removal.removeId = true;
 
-        var responsePromise = $http.post(config.serverUrl + "/admin/deleteAssignment", $scope.removal);
-        responsePromise.then(function(response) {
-            $scope.backupChip.splice(index, 1)
-            if ($scope.removal.removeId)
-                delete $scope.removal.userId
-            if ($scope.removal.removeId)
-                delete $scope.removal.source
-        })
+            }
+            console.log("Entered")
+            var responsePromise = $http.post(config.serverUrl + "/admin/deleteAssignment", $scope.removal);
+            responsePromise.then(function(response) {
+                $scope.backupChip.splice(index, 1)
+                if ($scope.removal.removeId)
+                    delete $scope.removal.userId
+                if ($scope.removal.removeId)
+                    delete $scope.removal.source
+            })
+        }, function() {
+          $scope.status = 'You decided to not delete.';
+          $scope.chips = []
+          for (var index in $scope.backupChip) {
+            $scope.chips.push($scope.backupChip[index]);
+          }
+          $scope.$apply()
+        });
     }
 
     $scope.editUser = function(index){
-        console.log("Selected User for Edit: "+JSON.stringify($scope.userInfo[index]))
+        console.log("Selected User for Edit: " + JSON.stringify($scope.userInfo[index]))
         $scope.editUserFlag[index] = true
     }
 

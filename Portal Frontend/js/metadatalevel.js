@@ -14,6 +14,10 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 	$scope.showSpinner = false
     $scope.showBar = false
 
+    if (!$scope.username){
+        $location.url("/login");
+        return
+    }
 	// var url = "http://10.146.95.172:3000/api/metadatalevel";
 	var url = config.serverUrl + "/api/metadatalevel"
 	$scope.setChoice = function(choice){

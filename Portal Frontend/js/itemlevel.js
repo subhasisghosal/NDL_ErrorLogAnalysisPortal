@@ -14,6 +14,10 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
     $scope.showBar = false
 
     console.log($scope.collectionName)
+    if (!$scope.username){
+        $location.url("/login");
+        return
+    }
     // var url = "http://10.146.95.172:3000/api/itemlevel";
     var url = config.serverUrl + "/api/itemlevel"
     $scope.setChoice = function(choice) {

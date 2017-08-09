@@ -25,7 +25,11 @@ logApp.controller('totalCtrl', function($rootScope, $scope, $timeout, $location,
 	// var url = "http://10.146.95.172:3000/api/report";
 	var url = config.serverUrl + "/api/report";
 
-console.log($scope.collectionName)
+	console.log($scope.collectionName)
+	if (!$scope.username){
+        $location.url("/login");
+        return
+    }
 	
 	$scope.logout = function(){
         userInfoService.removeUserInfo()

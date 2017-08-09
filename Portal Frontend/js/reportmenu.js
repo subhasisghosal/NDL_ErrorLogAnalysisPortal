@@ -2,6 +2,12 @@ logApp.controller('reportsMenuCtrl', function($rootScope, $scope, $timeout, $loc
     console.log("User is " + JSON.stringify(userInfoService.getUserInfo()));
 
     $scope.username = userInfoService.getUserName()
+
+    if (!$scope.username){
+        $location.url("/login");
+        return
+    }
+    
     $scope.logout = function(){
         userInfoService.removeUserInfo()
         $location.url("/login");

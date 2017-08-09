@@ -987,6 +987,31 @@ app.get('/admin/getsources', function(req, res) {
     }).sort('sourceCode')
 })
 
+app.post('/csuser/getsources', function(req, res) {
+    var user = req.body.userId
+    var userSource = mongoose.model('userSource', userSourceSchema)
+    var dataSource = mongoose.model('dataSource', dataSourceSchema, 'dataSources')
+    userSource.findOne({'userId':user}).exec(function(err,item){
+        var list = []
+        async.eachSeries(item.sourceCodes, function(source, callback){
+            getList = function(calback){
+                dataSource.findOne({'sourceCode':source.code},function(err, source) {
+                    console.log(source)
+                    list.push(source)
+                    calback() && calback(list)
+                })
+            }
+            getList(function(data){
+                console.log(data)
+                callback()
+            })
+        }, function(err){
+            console.log("Done")
+            res.send(list)
+        })  
+    })
+})
+
 app.get('/admin/getAllLogs', function(req, res) {
     var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
     uploadLog.find(function(err, items) {

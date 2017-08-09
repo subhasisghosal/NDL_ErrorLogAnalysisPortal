@@ -13,7 +13,7 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
     $scope.selectedBatches = []
     $scope.zip = {}
 
-    if (!$scope.userData.userid && $scope.role==="admin"){
+    if (!$scope.userData.userid && !($scope.role==="admin")){
         $location.url("/login");
         return
     }
@@ -51,7 +51,7 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
     }
     console.log(sourceList)
     if (sourceList.length > 0)
-            $scope.sourceList = sourceList;
+        $scope.sourceList = sourceList;
     
 
     var role = userInfoService.getUserRole()
@@ -85,10 +85,11 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
 
     $scope.getSources = function() {
         $scope.assItems = []
-        $http.get(config.serverUrl + "/admin/getsources")
+        var data = {'userId':$scope.userData.userid}
+        $http.post(config.serverUrl + "/csuser/getsources", data)
             .then(function(response) {
                 $scope.sourceInfo = response.data
-                //console.log($scope.sourceInfo)
+                console.log($scope.sourceInfo)
             })
     }
 
@@ -148,7 +149,7 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
 
     $scope.file = {
         source: "",
-        batch: 0,
+        batch: "",
         comment: ""
     };
 
