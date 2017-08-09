@@ -10,6 +10,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
     $scope.collectionName = userInfoService.getCollection()
     $scope.username = userInfoService.getUserName()
     $scope.flag = 0;
+    $scope.showSpinner = false
+    $scope.showBar = false
 
     console.log($scope.collectionName)
     // var url = "http://10.146.95.172:3000/api/itemlevel";
@@ -47,6 +49,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
         $scope.getArray = []
         if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'informationCode') {
             //		if($scope.selectedList.length === 0 && $scope.selectedOption === 'informationCode'){
+            $scope.showSpinner = true
             $scope.availableOptions = [];
             $scope.selectedList = [];
             $scope.availableItems = [];
@@ -65,6 +68,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                 for (var i = 0; i < availabledata.length; i++) {
                     $scope.availableOptions.push({ value: availabledata[i].name, isAttempted: false, count: availabledata[i].count });
                 }
+                $scope.showSpinner = false
             });
 
             responsePromise.error(function(data, status, headers, config) {
@@ -72,6 +76,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
             });
         } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'informationCode') && $scope.selectedOption === 'fieldName') {
             //		} else if ($scope.selectedList.length === 0 && $scope.selectedOption === 'fieldName'){
+            $scope.showSpinner = true
             $scope.availableOptions = [];
             $scope.selectedList = [];
             $scope.availableItems = [];
@@ -89,7 +94,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                 for (var i = 0; i < availabledata.length; i++) {
                     $scope.availableOptions.push({ value: availabledata[i].name, isAttempted: false, count: availabledata[i].count });
                 }
-
+                $scope.showSpinner = false
             });
             responsePromise.error(function(data, status, headers) {
                 alert("AJAX failed!");
@@ -98,6 +103,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 
         } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'fieldValue') {
             //		} else if ($scope.selectedList.length === 0 && $scope.selectedOption === 'fieldName'){
+            $scope.showSpinner = true
             $scope.availableOptions = [];
             $scope.selectedList = [];
             $scope.availableItems = [];
@@ -115,7 +121,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                 for (var i = 0; i < availabledata.length; i++) {
                     $scope.availableOptions.push({ value: availabledata[i].name, isAttempted: false, count: availabledata[i].count });
                 }
-
+                $scope.showSpinner = false
             });
             responsePromise.error(function(data, status, headers) {
                 alert("AJAX failed!");
@@ -125,7 +131,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
         } else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'fieldName') {
 
             console.log($scope.selectedList);
-
+            $scope.showBar = true
             $scope.availableItems = [];
             $scope.rightListObtained = true;
 
@@ -161,6 +167,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                         'count': $scope.availableItems[i].fieldvalue.length
                     })
                 }
+                $scope.showBar = false
                 // console.log($scope.availableItems);
                 // console.log($scope.availableInfoCode);
             });
@@ -173,7 +180,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
         } else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'fieldValue') {
 
             console.log($scope.selectedList);
-
+            $scope.showBar = true
             $scope.availableItems = [];
             $scope.rightListObtained = true;
 
@@ -209,6 +216,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                         'count': $scope.availableItems[i].fieldname.length
                     })
                 }
+                $scope.showBar = false
                 console.log($scope.availableItems);
                 console.log($scope.availableInfoCode);
             });
@@ -220,7 +228,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
 
         } else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'informationCode') {
             console.log($scope.selectedList);
-
+            $scope.showBar = true
             $scope.availableItems = [];
             $scope.rightListObtained = true;
 
@@ -249,6 +257,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                         'fieldName': $scope.availableItems[i]
                     })
                 }
+                $scope.showBar = false
                 // console.log($scope.availableItems);
             });
             responsePromise.error(function(data, status, headers) {

@@ -3,8 +3,8 @@ var logApp = angular.module('logAnalysisApp', ['ngMaterial','lfNgMdFileInput','n
 logApp.constant('config', {
 	apiUrl:'http://10.17.14.26:8080',
 	// serverUrl:'http://10.17.14.26:3000'
-	// serverUrl:'http://10.146.58.17:3000'
-	serverUrl:'http://localhost:3000'
+	serverUrl:'http://10.146.58.17:3000'
+	// serverUrl:'http://localhost:3000'
 })
 
 logApp.config(['$routeProvider', '$compileProvider','$mdThemingProvider', function($routeProvider,$compileProvider,$mdThemingProvider){

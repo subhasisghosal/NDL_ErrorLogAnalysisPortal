@@ -4,12 +4,13 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 	$scope.selectedList = [];
 	$scope.rightListObtained = false;
 	$scope.prevchoice = 'informationCode';
-
 	$scope.availableItems = [];
 	$scope.selectedOption = 'informationCode';
 	$scope.collectionName = userInfoService.getCollection()
 	$scope.username = userInfoService.getUserName()
 	$scope.flag = false;
+	$scope.showSpinner = false
+    $scope.showBar = false
 	
 	// var url = "http://10.146.95.172:3000/api/sourcelevel";
 	var url = config.serverUrl + "/api/sourcelevel"
@@ -41,6 +42,7 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 			//$http.post(){}
 		$scope.getArray = []
 		if(($scope.selectedList.length === 0 || $scope.prevchoice === 'handle') && $scope.selectedOption === 'informationCode'){
+			$scope.showSpinner = true
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
 			$scope.availableItems = [];
@@ -60,9 +62,11 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 					for(var i=0;i<availabledata.length;i++){
 						$scope.availableOptions.push({ value : availabledata[i].name, isAttempted : false, count : availabledata[i].count  });
 					}
+					$scope.showSpinner = false
                 });
 				
 		} else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'informationCode') && $scope.selectedOption === 'handle'){
+			$scope.showSpinner = true
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
 			$scope.availableItems = [];
@@ -81,13 +85,13 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
 					for(var i=0;i<availabledata.length;i++){
 						$scope.availableOptions.push({ value : availabledata[i].name, isAttempted : false, count : availabledata[i].count  });
 					}
-
+					$scope.showSpinner = false
                 });
            
 				$scope.leftListObtained = true;
 				
 		} else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'handle'){
-				
+				$scope.showBar = true
 				console.log($scope.selectedList);
 				
 				$scope.availableItems = [];
@@ -119,12 +123,14 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
                      		'informationCode': $scope.availableItems[i]
                      	})
                      }
+                     $scope.showBar = false
                 });
             
 				$scope.leftListObtained = true;
 				//$scope.selectedList=[];
 				
 		} else if($scope.selectedList.length > 0 && $scope.selectedOption === 'informationCode'){
+				$scope.showBar = true
 				console.log($scope.selectedList);
 				
 				$scope.availableItems = [];
@@ -162,6 +168,7 @@ logApp.controller('sourceCtrl', function($rootScope, $scope, $timeout, $location
                      		'informationCode': $scope.availableItems[i].informationCode
                      	})
                      }
+                     $scope.showBar = false
                 });
             
 				$scope.leftListObtained = true;

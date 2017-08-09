@@ -10,6 +10,7 @@ var session = require('express-session')
 */
 var mongoose = require('mongoose')
 // mongoose.connect('mongodb://10.17.14.26:27017/ndl')
+// mongoose.connect('mongodb://10.146.58.17:27017/ndl')
 mongoose.connect('mongodb://localhost:27017/ndl')
 
 var fileUpload = require('express-fileupload')
@@ -936,27 +937,45 @@ app.post('/admin/addsource', function(req, res) {
     console.log(sources)
     var dataSource = mongoose.model('dataSource', dataSourceSchema, 'dataSources')
     var sourceUser = mongoose.model('sourceUser', sourceUserSchema)
-    async.eachSeries(sources, function(source, callback) {
-        console.log(source)
-        var record = new dataSource({
-            sourceCode: source.sourceCode,
-            sourceName: source.sourceName
-        })
-        var refRecord = new sourceUser({
-            sourceCode: source.sourceCode,
-            userIds: []
-        })
-        console.log("Saving record for " + record)
-        record.save(function(err, record) {
-            if (err) return console.error(err);
-        })
-        refRecord.save(function(err, record) {
-            if (err) return console.error(err);
-        })
-        callback()
-    }, function(err) {
-        if (err) throw err
-        res.send("Sources Added")
+    var errFlag = false
+    var duplicateFlag = false
+    var bulkSource = []
+    var refSource = []
+    for(var i in sources){
+        var code = sources[i].sourceCode ? sources[i].sourceCode.trim() : ""
+        var name = sources[i].sourceName ? sources[i].sourceName.trim() : ""
+        if(code==="" || name==="") {
+            res.send("Blank Values Can not be added")
+            return;
+        }
+        else{
+            bulkSource.push({
+                'sourceCode': sources[i].sourceCode,
+                'sourceName': sources[i].sourceName
+            })
+            refSource.push({
+                'sourceCode': sources[i].sourceCode,
+                'userIds': []
+            })
+        }
+    }
+    console.log(bulkSource)
+    dataSource.collection.insert(bulkSource, function(err, docs){
+        if (err) {
+        // TODO: handle error
+            res.send("Duplicate Entry in Source Master Database")
+        } else {
+            console.info('%d users were successfully stored.', docs.length);
+            sourceUser.collection.insert(bulkSource, function(error, docsRef){
+                if (error) {
+                // TODO: handle error
+                } else {
+                    console.info('%d users were stored into assignments', docsRef.length);
+                    console.log(errFlag)
+                    res.send("Source(s) Added Succesfully")
+                }
+            })
+        }
     })
 })
 
@@ -999,27 +1018,28 @@ app.post('/admin/adduser', function(req, res) {
             record.save(function(err, record) {
                 if (err) {
                     console.log(err)
-                    res.send("bad request");
+                    isError = true
+                    // res.send("bad request");
                 } else {
                     refRecord.save(function(err, record) {
                         if (err) {
                             console.log(err)
-                            res.send("bad request");
+                            isError = true
+                            // res.send("bad request");
                         }
                     })
                 }
-
             })
         });
         callback()
     }, function(err) {
-        /*console.log(users[0].password)
+        // console.log(users[0].password)
         if (isError) {
             res.send("bad request");
         }
         else {
-            res.send("Users Added")
-        }*/
+            res.send("User(s) Added Successfully")
+        }
     })
 })
 
@@ -1282,6 +1302,7 @@ app.post('/users/authenticate', function(req, response) {
     sess.loginStatus = false
     var User = mongoose.model('User', userSchema, "userMaster")
     var uploadLog = mongoose.model("uploadLog", uploadLogSchema, "logDetails")
+    var userSource = mongoose.model('userSource', userSourceSchema)
     User.findOne(function(err, user) {
         if (!user) {
             console.log("If block")
@@ -1293,19 +1314,47 @@ app.post('/users/authenticate', function(req, response) {
             bcrypt.compare(sess.password, user.password, function(err, res) {
                 if (err) throw err
                 if (res) {
+                    var assignments = []
                     var uploads = []
-                    uploadLog.find({'userID':sess.userid}).exec(function(err, item){
-                        for(var i in item){
-                            uploads.push(item[i])
-                        }
-                        if(uploads.length>0){
-                            sess.uploads = uploads
-                        }
-                        
-                        sess.loginStatus = true
-                        console.log(sess)
-                        response.send(sess)
-                    })
+                    if(user.role == 'LS'){
+                        userSource.findOne({'userId':sess.userid}).select('sourceCodes').exec(function(err,item){
+                            // console.log(item)
+                            for(var i=0;i<item.sourceCodes.length;i++){
+                                // console.log(i,item.sourceCodes[i])
+                                uploadLog.find({'sourceCode':item.sourceCodes[i].code}, function(err,source){
+                                    if(!source){
+                                        console.log("Source Not Uploaded")
+                                    }
+                                    for(var i in source){
+                                        uploads.push(source[i])
+                                    }
+                                    if(uploads.length>0){
+                                        sess.uploads = uploads
+                                    }
+                                    sess.loginStatus = true
+                                    console.log(sess)
+                                    response.send(sess)
+                                })
+                            }
+                        })
+                    }
+                    else{
+                        uploadLog.find({'userID':sess.userid}).exec(function(err, item){
+                            if(!item){
+                                console.log("Entry Not Found")
+                            }
+                            for(var i in item){
+                                uploads.push(item[i])
+                            }
+                            if(uploads.length>0){
+                                sess.uploads = uploads
+                            }
+                            
+                            sess.loginStatus = true
+                            console.log(sess)
+                            response.send(sess)
+                        })
+                    }
                     // response.send("Login Success")
                 } else {
                     // sess.destroy();

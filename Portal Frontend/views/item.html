@@ -1,5 +1,18 @@
 <div flex layout="row">
-    <div layout="column" flex="90" flex-offset="5">
+    <div layout="column" flex="90" flex-offset="5">        
+        <div class="modal-bg" ng-if="showSpinner" layout="column" layout-align="center center">
+            <div layout="row" layout-align="center center">
+                <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+            </div>
+        </div>
+        <div class="modal-bg" ng-if="showBar" layout="column" layout-align="center center">
+            <div layout="row" layout-align="center center">
+                <md-progress-linear md-mode="indeterminate" class="linear md-warn"></md-progress-linear>
+                <!--<md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>-->
+            </div>
+            <br>
+            Loading...
+        </div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>

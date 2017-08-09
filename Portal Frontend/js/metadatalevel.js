@@ -3,7 +3,6 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 	$scope.leftListObtained = false;
 	$scope.selectedList = [];
 	$scope.selectedList2 = [];
-
 	$scope.rightListObtained = false;
 	$scope.availableItems = [];
 	$scope.selectedOption = 'informationCode';
@@ -12,6 +11,8 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 	$scope.flag = false;
 	$scope.flag2 = 'A';
 	$scope.prevchoice = 'informationCode'
+	$scope.showSpinner = false
+    $scope.showBar = false
 
 	// var url = "http://10.146.95.172:3000/api/metadatalevel";
 	var url = config.serverUrl + "/api/metadatalevel"
@@ -43,6 +44,7 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 			//$http.post(){}
 		$scope.getArray = []
 		if(($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'informationCode'){
+			$scope.showSpinner = true
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
 			$scope.selectedList2 = [];
@@ -64,11 +66,13 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 					for(var i=0;i<availabledata.length;i++){
 						$scope.availableOptions.push({ value : availabledata[i].name, isAttempted : false, count : availabledata[i].count  });
 					}
+					$scope.showSpinner = false
                 });
 				
 			$scope.leftListObtained = true;
 			//console.log($scope.availableOptions);    
 		} else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'informationCode') && $scope.selectedOption === 'fieldName'){
+			$scope.showSpinner = true
 			$scope.availableOptions = [];
 			$scope.selectedList = [];
 			$scope.selectedList2 = [];
@@ -91,12 +95,13 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
 					for(var i=0;i<availabledata.length;i++){
 						$scope.availableOptions.push({ value : availabledata[i].name, isAttempted : false, count : availabledata[i].count  });
 					}
+					$scope.showSpinner = false
                 });
             
 				$scope.leftListObtained = true;
 				
 		} else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'fieldName'){
-				
+				$scope.showBar = true
 				console.log($scope.selectedList);
 				
 				$scope.availableItems = [];
@@ -128,12 +133,14 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
                      		'handle': $scope.availableItems[i].handleId
                      	})
                      }
+                     $scope.showBar = false
                 });
             
 				$scope.leftListObtained = true;
 				$scope.selectedList2=[];
 				
 		} else if($scope.selectedList.length > 0 && $scope.selectedOption === 'informationCode'){
+				$scope.showBar = true
 				console.log($scope.selectedList);
 				
 				$scope.availableItems = [];
@@ -167,6 +174,7 @@ logApp.controller('metadataCtrl', function($rootScope, $scope, $timeout, $locati
                      	})
                      }
 					 // console.log($scope.getArray);
+					 $scope.showBar = false
                 });
             
 				$scope.leftListObtained = true;

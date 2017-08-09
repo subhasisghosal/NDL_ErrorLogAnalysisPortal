@@ -2,7 +2,7 @@
     <div layout="column" flex="90" flex-offset="5">
         <div class=" " layout="column">
             <div layout="row" layout-align="end center">
-                <h2>&nbsp; Welcome {{username}}</h2>
+                <h3>&nbsp; Welcome, {{username}}</h3>
                 <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
             </div>
             <div layout="row" class="md-margin">
@@ -88,11 +88,12 @@
                                             <!-- <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="right">
                                                     <md-button class="md-raised md-primary" ng-click="showConfirm($event)">Upload</md-button>
                                                 </div> -->
-                                            <div ng-if="status" id="status">
-                                                <b layout="row" layout-align="center center" class="md-padding">{{status}}</b>
-                                            </div>
-                                            <input type="file" file-model="myFile" name="file" id='file' onchange="angular.element(this).scope().uploadFile()"/>
-                                            <input type='submit' value='Upload!' />
+                                                <md-input-container class="md-block" flex>
+                                                    <label>File Path</label>
+                                                    <input id="filePath" ng-model="zip.filePath">
+                                                </md-input-container>
+                                    
+                                            <input type='button' value='Upload!' ng-click="parse()"/>
                                             <!--  </div>-->
                                             <!--                      </div>-->
                                             <p> </p>

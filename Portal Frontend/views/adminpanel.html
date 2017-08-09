@@ -2,7 +2,7 @@
     <div layout="column" flex="90" flex-offset="5">
         <div class=" " layout="column">
             <div layout="row" layout-align="end center">
-                <h2>&nbsp; Welcome {{username}}</h2>
+                <h3>&nbsp; Welcome, {{username}}</h3>
                 <span><md-button class="md-raised md-warn" ng-click="logout()">LogOut</md-button></span>
             </div>
             <div layout="row" class="md-margin">
@@ -27,11 +27,11 @@
                                                         <div layout-gt-sm="row" ng-repeat="source in sources">
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>Source Code</label>
-                                                                <input id="srcode_{{$index}}" ng-model="source.sourceCode">
+                                                                <input id="srcode_{{$index}}" ng-model="source.sourceCode" required>
                                                             </md-input-container>
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>Source Name</label>
-                                                                <input id="srcname_{{$index}}" ng-model="source.sourceName">
+                                                                <input id="srcname_{{$index}}" ng-model="source.sourceName" required>
                                                             </md-input-container>
                                                         </div>
                                                         <div layout="row" layout-align="right">
@@ -90,15 +90,15 @@
                                                         <div layout-gt-sm="row" ng-repeat="user in users">
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>User ID</label>
-                                                                <input id="userid_{{$index}}" ng-model="user.userId">
+                                                                <input id="userid_{{$index}}" ng-model="user.userId" required>
                                                             </md-input-container>
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>Password</label>
-                                                                <input id="passwd_{{$index}}" ng-model="user.password" type="password">
+                                                                <input id="passwd_{{$index}}" ng-model="user.password" type="password" required>
                                                             </md-input-container>
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>First Name</label>
-                                                                <input id="fname_{{$index}}" ng-model="user.firstName">
+                                                                <input id="fname_{{$index}}" ng-model="user.firstName" required>
                                                             </md-input-container>
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>Last Name</label>
@@ -106,7 +106,7 @@
                                                             </md-input-container>
                                                             <md-input-container class="md-block">
                                                                 <label>Role</label>
-                                                                <md-select id="role_{{$index}}" name="type" ng-model="user.role">
+                                                                <md-select id="role_{{$index}}" name="type" ng-model="user.role" required>
                                                                     <md-option value="CS">CS</md-option>
                                                                     <md-option value="LS">LS</md-option>
                                                                 </md-select>

@@ -11,6 +11,7 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
     $scope.role = userInfoService.getUserRole()
     $scope.sourceList = []
     $scope.selectedBatches = []
+    $scope.zip = {}
 
     if (!$scope.userData.userid && $scope.role==="admin"){
         $location.url("/login");
@@ -22,6 +23,25 @@ logApp.controller('fileUploadCtrl', function($rootScope, $scope, $timeout, $loca
         $location.url("/login");
         return
     }
+
+    // $scope.parse = function(){
+    //     zip.workerScriptsPath = '/lib/';
+    //     zip.workerScripts = {
+    //       deflater: ['/lib/z-worker.js', '/lib/deflate.js'],
+    //       inflater: ['/lib/z-worker.js', '/lib/inflate.js']
+    //     };
+    //     console.log($scope.zip.filePath)
+    //     JSZipUtils.getBinaryContent($scope.zip.filePath, function(err, data) {
+    //         if(err) {
+    //             throw err; // or handle err
+    //         }
+
+    //         JSZip.loadAsync(data).then(function () {
+    //             // ...
+    //             console.log(data)
+    //         });
+    //     });
+    // }
 
    var sourceList = []
    // console.log(userData.uploads)
