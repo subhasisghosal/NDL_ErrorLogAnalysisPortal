@@ -2,13 +2,14 @@
     <div layout="column" flex="90" flex-offset="5">        
         <div class="modal-bg" ng-if="showSpinner" layout="column" layout-align="center center">
             <div layout="row" layout-align="center center">
-                <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+                <!--<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>-->
+                <md-progress-linear md-mode="indeterminate" class="linear md-accent md-hue-4"></md-progress-linear>
             </div>
         </div>
         <div class="modal-bg" ng-if="showBar" layout="column" layout-align="center center">
             <div layout="row" layout-align="center center">
-                <md-progress-linear md-mode="indeterminate" class="linear md-warn"></md-progress-linear>
-                <!--<md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>-->
+                <!--<md-progress-linear md-mode="indeterminate" class="linear md-warn"></md-progress-linear>-->
+                <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
             </div>
             <br>
             Loading...
@@ -76,7 +77,7 @@
             <div layout="column" flex="30" class="scrollable">
                 <div ng-repeat="availableOption in availableOptions" ng-click="optionAttempted(availableOption)">
                     <div ng-class="(availableOption.isAttempted === true)?'pressed':'nonpressed'" layout="row" style="padding: 8px 10px; border-bottom: solid 1px #000;">
-                        <span flex="85" style="word-wrap:break-word;">{{availableOption.value}}</span>
+                        <span flex="85" style="word-wrap:break-word;" >{{availableOption.value}}</span>
                         <span flex="15" layout="row" layout-align="center center" class="roundcorner">{{availableOption.count}}</span>
                     </div>
                 </div>
@@ -84,38 +85,44 @@
             <div ng-if="rightListObtained === true" layout="column" flex="70">
                 <!--table-->
                 <div ng-if="flag == 1 && (availableItems.length > 0)" layout="row" class="heading">
-                    <span flex>Field Name</span>
+                    <span flex="60">Field Name</span>
+                    <span flex="40">Handle ID</span>
                 </div>
                 <div ng-if="flag == 2 && (availableItems.length > 0)" layout="row" class="heading">
-                    <span flex="25">Handle ID</span>
-                    <span flex="65">Field Value</span>
-                    <span flex="10">Count</span>
+                    <span flex="15">Handle ID</span>
+                    <span flex="30">Information Code</span>
+                    <span flex="25">Field Value</span>
+                    <span flex="30">Field Name</span>
                 </div>
                 <div ng-if="flag == 3 && (availableItems.length > 0)" layout="row" class="heading">
-                    <span flex="25">Handle ID</span>
-                    <span flex="65">Field Name</span>
-                    <span flex="10">Count</span>
+                    <span flex="15">Handle ID</span>
+                    <span flex="30">Information Code</span>
+                    <span flex="30">Field Name</span>
+                    <span flex="25">Field Value</span>
                 </div>
                 <div ng-if="true" class="scrollable">
                     <div ng-repeat="availableItem in availableItems" layout="column" style="padding-left: 15px;">
                         <!--tr-->
                         <!--Need to implement table structure using span and div-->
                         <div ng-if="flag == 1" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
-                            <span flex><!--td-->{{availableItem}}<!--/td--></span>
+                            <span flex="60"><!--td-->{{availableItem.fieldName}}<!--/td--></span>
+                            <span flex="40"><!--td-->{{availableItem.handleId}}<!--/td--></span>
                         </div>
                         <div ng-if="flag == 2" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
-                            <span flex="25"><!--td-->{{availableItem.handleId}}<!--/td--></span>
-                            <span flex="65"><!--td-->
-                              <div ng-repeat="value in availableItem.fieldvalue track by $index">{{value}}</div>
+                            <span flex="20"><!--td-->{{availableItem.handle}}<!--/td--></span>
+                            <span flex="30"><!--td-->{{availableItem.informationCode}}<!--/td--></span>
+                            <span flex="50" layout="row" ng-repeat="field in availableItem.fields track by $index"><!--td-->
+                                <span flex="35">{{field.fieldValue}}</span>
+                                <span flex="65">{{field.fieldName}}</span>
                             </span>
-                            <span flex="10"><!--td-->{{availableItem.fieldvalue.length}}<!--/td--></span>
                         </div>
                         <div ng-if="flag == 3" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
-                            <span flex="25"><!--td-->{{availableItem.handleId}}<!--/td--></span>
-                            <span flex="65"><!--td-->
-                              <div ng-repeat="value in availableItem.fieldname track by $index">{{value}}</div>
+                            <span flex="20"><!--td-->{{availableItem.handle}}<!--/td--></span>
+                            <span flex="30"><!--td-->{{availableItem.informationCode}}<!--/td--></span>
+                            <span flex="50" layout="row" ng-repeat="field in availableItem.fields track by $index"><!--td-->
+                                <span flex="35">{{field.fieldName}}</span>
+                                <span flex="65">{{field.fieldValue}}</span>                                
                             </span>
-                            <span flex="10"><!--td-->{{availableItem.fieldname.length}}<!--/td--></span>
                         </div>
                         <!--/tr-->
                     </div>

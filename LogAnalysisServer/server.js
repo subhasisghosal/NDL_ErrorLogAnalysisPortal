@@ -368,9 +368,13 @@ app.post('/api/itemlevel', function(req, res) {
                     async.eachSeries(items, function(item, calback) {
                         // console.log(item)
                         // resObj.item.push(item.fields)
+                        var handleId = item.handle
                         async.eachSeries(item.fields, function(fields, callback) {
                             console.log(fields)
-                            resObj.item.push(fields.fieldName)
+                            resObj.item.push({
+                                'fieldName':fields.fieldName,
+                                'handleId':handleId
+                            })
                             callback()
                         }, function(err) {
                             if (err) throw err
@@ -381,7 +385,10 @@ app.post('/api/itemlevel', function(req, res) {
                     }, function(err) {
                         if (err) throw err
                         console.log("Done")
+                        console.log(resObj.item.length)
                         unique(resObj.item)
+                        resObj.item = resObj.item.filter((item, index, self) => self.findIndex((t) => {return t.fieldName === item.fieldName && t.handleId === item.handleId; }) === index)
+                        console.log(resObj.item.length)
                         res.send(resObj)
                     })
                 })
@@ -414,47 +421,11 @@ app.post('/api/itemlevel', function(req, res) {
                 })
         } else {
             fieldName = JSON.parse("[" + fieldName + "]")
-            itemDemo.find(qs, function(err, items) {
+            itemDemo.find(qs, function(err, items) {        //Find all records with selected field name(s)
                     if (err) throw err
-                    var resObj = { infoCode: [], item: [] }
                     // console.dir(items)
-                    async.eachSeries(items, function(item, calback) {
-                        // console.log(item)
-                        resObj.infoCode.push(item.informationCode)
-                        calback()
-                    }, function(err) {
-                        if (err) throw err
-                        console.log("Done")
-                        unique(resObj.infoCode)
-                        itemDemo.find(qs, function(err, items) {
-                                // console.log(items)
-                                async.eachSeries(items, function(info, callback) {
-                                    console.dir(info.fields)
-                                    var fv = []
-                                    async.eachSeries(info.fields, function(fields, callbck) {
-                                        // console.log(info)
-                                        console.dir(fields)
-                                        fv.push(fields.fieldValue)
-
-                                        callbck()
-                                    }, function(err) {
-                                        if (err) throw err
-                                        console.log("Done3")
-                                        resObj.item.push({
-                                            "handleId": info.handle,
-                                            "fieldvalue": unique(fv),
-                                        })
-                                        // res.send(resObj)
-                                    })
-                                    callback()
-                                }, function(err) {
-                                    if (err) throw err
-                                    console.log("Done2")
-                                    res.send(resObj)
-                                })
-                            })
-                            .where("informationCode").in(resObj.infoCode)
-                    })
+                    if (items)
+                        res.send(items)
                 })
                 .where("fields.fieldName").in(fieldName)
         }
@@ -487,45 +458,47 @@ app.post('/api/itemlevel', function(req, res) {
             fieldValue = JSON.parse("[" + fieldValue + "]")
             itemDemo.find(qs, function(err, items) {
                     if (err) throw err
-                    var resObj = { infoCode: [], item: [] }
-                    // console.dir(items)
-                    async.eachSeries(items, function(item, calback) {
-                        // console.log(item)
-                        resObj.infoCode.push(item.informationCode)
-                        calback()
-                    }, function(err) {
-                        if (err) throw err
-                        console.log("Done")
-                        unique(resObj.infoCode)
-                        itemDemo.find(qs, function(err, items) {
-                                // console.log(items)
-                                async.eachSeries(items, function(info, callback) {
-                                    console.dir(info.fields)
-                                    var fv = []
-                                    async.eachSeries(info.fields, function(fields, callbck) {
-                                        // console.log(info)
-                                        console.dir(fields)
-                                        fv.push(fields.fieldName)
+                    if (items)
+                        res.send(items)
+                    // var resObj = { infoCode: [], item: [] }
+                    // // console.dir(items)
+                    // async.eachSeries(items, function(item, calback) {
+                    //     console.log(item)
+                    //     resObj.infoCode.push(item.informationCode)
+                    //     calback()
+                    // }, function(err) {
+                    //     if (err) throw err
+                    //     console.log("Done")
+                    //     unique(resObj.infoCode)
+                    //     itemDemo.find(qs, function(err, items) {
+                    //             // console.log(items)
+                    //             async.eachSeries(items, function(info, callback) {
+                    //                 // console.dir(info.fields)
+                    //                 var fv = []
+                    //                 async.eachSeries(info.fields, function(fields, callbck) {
+                    //                     // console.log(info)
+                    //                     // console.dir(fields)
+                    //                     fv.push(fields.fieldName)
 
-                                        callbck()
-                                    }, function(err) {
-                                        if (err) throw err
-                                        console.log("Done3")
-                                        resObj.item.push({
-                                            "handleId": info.handle,
-                                            "fieldname": unique(fv),
-                                        })
-                                        // res.send(resObj)
-                                    })
-                                    callback()
-                                }, function(err) {
-                                    if (err) throw err
-                                    console.log("Done2")
-                                    res.send(resObj)
-                                })
-                            })
-                            .where("informationCode").in(resObj.infoCode)
-                    })
+                    //                     callbck()
+                    //                 }, function(err) {
+                    //                     if (err) throw err
+                    //                     console.log("Done3")
+                    //                     resObj.item.push({
+                    //                         "handleId": info.handle,
+                    //                         "fieldname": unique(fv),
+                    //                     })
+                    //                     // res.send(resObj)
+                    //                 })
+                    //                 callback()
+                    //             }, function(err) {
+                    //                 if (err) throw err
+                    //                 console.log("Done2")
+                    //                 res.send(resObj)
+                    //             })
+                    //         })
+                    //         .where("informationCode").in(resObj.infoCode)
+                    // })
                 })
                 .where("fields.fieldValue").in(fieldValue)
         }

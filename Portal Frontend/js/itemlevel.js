@@ -41,11 +41,11 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
     $scope.getArray = []
     $scope.getHeader = function() {
         if ($scope.flag === 1)
-            return ["Field Name"]
+            return ["Field Name", "Handle Id"]
         else if ($scope.flag === 2)
-            return ["Handle Id", "Field Values", "Count"]
+            return ["Handle Id", "Information Code", "Field Value", "Field Name"]
         else
-            return ["Handle Id", "Field Names", "Count"]
+            return ["Handle Id", "Information Code", "Field Names", "Field Value"]
     }
 
     $scope.submitList = function() {
@@ -157,29 +157,34 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
             };
             var responsePromise = $http.post(url, data);
             responsePromise.success(function(data, status, headers) {
-                $scope.availableInfoCode = data.infoCode;
-                $scope.availableItems = data.item;                
+                $scope.availableItems = data  
                 for (var i in $scope.availableItems) {
-                    console.log($scope.availableItems[i])
+                    //Creating unique array
+                    $scope.availableItems[i].fields = $scope.availableItems[i].fields.filter((fields, index, self) => self.findIndex((t) => {return t.fieldName === fields.fieldName && t.fieldValue === fields.fieldValue; }) === index)
+                    //Parsing for CSV
+                    var fieldNames = ""
                     var fieldValues = ""
-                    for (var j in $scope.availableItems[i].fieldvalue)
-                        fieldValues += $scope.availableItems[i].fieldvalue[j] + " | "
+                    for (var j in $scope.availableItems[i].fields){
+                        fieldValues += $scope.availableItems[i].fields[j].fieldValue + " | "
+                        fieldNames += $scope.availableItems[i].fields[j].fieldName + " | "
+                    }
                     fieldValues = fieldValues.substring(0, fieldValues.length - 3);
+                    fieldNames = fieldNames.substring(0, fieldNames.length - 3);
                     $scope.getArray.push({
-                        'handleId': $scope.availableItems[i].handleId,
+                        'handleId': $scope.availableItems[i].handle,
+                        'informationCode': $scope.availableItems[i].informationCode,
                         'fieldvalues': fieldValues,
-                        'count': $scope.availableItems[i].fieldvalue.length
+                        'fieldnames': fieldNames   
                     })
                 }
                 $scope.showBar = false
                 // console.log($scope.availableItems);
-                // console.log($scope.availableInfoCode);
             });
             responsePromise.error(function(data, status, headers) {
                 alert("AJAX failed!");
             });
             $scope.leftListObtained = true;
-            $scope.selectedList = [];
+            // $scope.selectedList = [];
 
         } else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'fieldValue') {
 
@@ -206,29 +211,50 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
             };
             var responsePromise = $http.post(url, data);
             responsePromise.success(function(data, status, headers) {
-                $scope.availableInfoCode = data.infoCode;
-                $scope.availableItems = data.item;                
-                for (var i in $scope.availableItems) {
-                    console.log($scope.availableItems[i])
+                $scope.availableItems = []
+                for (var i in data) {
+                    console.log(data[i])
+                    var fields = []
+                    for (var j in data[i].fields) {
+                        for (var index in $scope.selectedList) {
+                            if (data[i].fields[j].fieldValue == $scope.selectedList[index]) {
+                                console.log("Found ", i, j, index)
+                                console.log(data[i].fields[j].fieldValue)
+                                fields.push(data[i].fields[j])
+                            }
+                        }
+                    }
+                    fields = fields.filter((fields, index, self) => self.findIndex((t) => { return t.fieldName === fields.fieldName && t.fieldValue === fields.fieldValue; }) === index)
+                    $scope.availableItems.push({
+                        'handle': data[i].handle,
+                        'informationCode': data[i].informationCode,
+                        'fields': fields
+                    })
+                    //Parsing for CSV
                     var fieldNames = ""
-                    for (var j in $scope.availableItems[i].fieldname)
-                        fieldNames += $scope.availableItems[i].fieldname[j] + " | "
+                    var fieldValues = ""
+                    for (var j in fields){
+                        fieldValues += fields[j].fieldValue + " | "
+                        fieldNames += fields[j].fieldName + " | "
+                    }
+                    fieldValues = fieldValues.substring(0, fieldValues.length - 3);
                     fieldNames = fieldNames.substring(0, fieldNames.length - 3);
                     $scope.getArray.push({
-                        'handleId': $scope.availableItems[i].handleId,
-                        'fieldnames': fieldNames,
-                        'count': $scope.availableItems[i].fieldname.length
+                        'handleId': data[i].handle,
+                        'informationCode': data[i].informationCode,
+                        'fieldvalues': fieldValues,
+                        'fieldnames': fieldNames   
                     })
                 }
                 $scope.showBar = false
                 console.log($scope.availableItems);
-                console.log($scope.availableInfoCode);
+                $scope.getArray = $scope.availableItems
             });
             responsePromise.error(function(data, status, headers) {
                 alert("AJAX failed!");
             });
             $scope.leftListObtained = true;
-            $scope.selectedList = [];
+            // $scope.selectedList = [];
 
         } else if ($scope.selectedList.length > 0 && $scope.selectedOption === 'informationCode') {
             console.log($scope.selectedList);
@@ -258,7 +284,8 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                 for (var i in $scope.availableItems) {
                     console.log($scope.availableItems[i])
                     $scope.getArray.push({
-                        'fieldName': $scope.availableItems[i]
+                        'fieldName': $scope.availableItems[i].fieldName,
+                        'handleId': $scope.availableItems[i].handleId
                     })
                 }
                 $scope.showBar = false
