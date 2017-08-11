@@ -234,7 +234,7 @@ app.post('/api/metadatalevel', function(req, res) {
                 }
                 res.send(resObj)
             }).where(choice).in(values)
-            .limit(lim).skip((pageToken - 1) * lim);
+            // .limit(lim).skip((pageToken - 1) * lim);
     }
 })
 
@@ -295,7 +295,7 @@ app.post('/api/sourcelevel', function(req, res) {
                     }
                     res.send(resObj)
                 }).where(choice).in(infoCode)
-                .limit(lim).skip((pageToken - 1) * lim);
+                // .limit(lim).skip((pageToken - 1) * lim);
         }
         if (handle !== "NULL") {
             handle = JSON.parse("[" + handle + "]")
@@ -321,7 +321,7 @@ app.post('/api/sourcelevel', function(req, res) {
                     })
                     res.send(resObj)
                 }).where(choice).in(handle)
-                .limit(lim).skip((pageToken - 1) * lim)
+                // .limit(lim).skip((pageToken - 1) * lim)
         }
     }
 })
@@ -460,45 +460,6 @@ app.post('/api/itemlevel', function(req, res) {
                     if (err) throw err
                     if (items)
                         res.send(items)
-                    // var resObj = { infoCode: [], item: [] }
-                    // // console.dir(items)
-                    // async.eachSeries(items, function(item, calback) {
-                    //     console.log(item)
-                    //     resObj.infoCode.push(item.informationCode)
-                    //     calback()
-                    // }, function(err) {
-                    //     if (err) throw err
-                    //     console.log("Done")
-                    //     unique(resObj.infoCode)
-                    //     itemDemo.find(qs, function(err, items) {
-                    //             // console.log(items)
-                    //             async.eachSeries(items, function(info, callback) {
-                    //                 // console.dir(info.fields)
-                    //                 var fv = []
-                    //                 async.eachSeries(info.fields, function(fields, callbck) {
-                    //                     // console.log(info)
-                    //                     // console.dir(fields)
-                    //                     fv.push(fields.fieldName)
-
-                    //                     callbck()
-                    //                 }, function(err) {
-                    //                     if (err) throw err
-                    //                     console.log("Done3")
-                    //                     resObj.item.push({
-                    //                         "handleId": info.handle,
-                    //                         "fieldname": unique(fv),
-                    //                     })
-                    //                     // res.send(resObj)
-                    //                 })
-                    //                 callback()
-                    //             }, function(err) {
-                    //                 if (err) throw err
-                    //                 console.log("Done2")
-                    //                 res.send(resObj)
-                    //             })
-                    //         })
-                    //         .where("informationCode").in(resObj.infoCode)
-                    // })
                 })
                 .where("fields.fieldValue").in(fieldValue)
         }

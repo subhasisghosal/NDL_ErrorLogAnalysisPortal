@@ -3,8 +3,10 @@
         <div class="modal-bg" ng-if="showSpinner" layout="column" layout-align="center center">
             <div layout="row" layout-align="center center">
                 <!--<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>-->
-                <md-progress-linear md-mode="indeterminate" class="linear md-accent md-hue-4"></md-progress-linear>
+                <md-progress-linear md-mode="indeterminate" class="linear md-hue-4"></md-progress-linear>
             </div>
+            <br>
+            Loading...
         </div>
         <div class="modal-bg" ng-if="showBar" layout="column" layout-align="center center">
             <div layout="row" layout-align="center center">
@@ -95,9 +97,9 @@
                     <span flex="30">Field Name</span>
                 </div>
                 <div ng-if="flag == 3 && (availableItems.length > 0)" layout="row" class="heading">
-                    <span flex="15">Handle ID</span>
+                    <span flex="20">Handle ID</span>
                     <span flex="30">Information Code</span>
-                    <span flex="30">Field Name</span>
+                    <span flex="25">Field Name</span>
                     <span flex="25">Field Value</span>
                 </div>
                 <div ng-if="true" class="scrollable">
@@ -119,9 +121,23 @@
                         <div ng-if="flag == 3" style="padding: 8px 10px; border-bottom: solid 1px #AFAFAF;" layout="row">
                             <span flex="20"><!--td-->{{availableItem.handle}}<!--/td--></span>
                             <span flex="30"><!--td-->{{availableItem.informationCode}}<!--/td--></span>
-                            <span flex="50" layout="row" ng-repeat="field in availableItem.fields track by $index"><!--td-->
-                                <span flex="35">{{field.fieldName}}</span>
-                                <span flex="65">{{field.fieldValue}}</span>                                
+                            <!--<md-input-container flex="50">
+                                <md-select ng-model="fields">
+                                    <md-option ng-repeat="field in availableItem.fields track by $index" ng-value="{{field.fieldValue}}">
+                                        <span flex="35">{{field.fieldName}}</span>
+                                        <span flex="65">{{field.fieldValue}}</span>
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>-->
+                            <span flex="50" layout="column" style="word-wrap:break-word;">
+                                <!--<span flex="35" ng-repeat="field in availableItem.fields track by $index">
+                                    {{field.fieldName}}
+                                </span>-->
+                                <span layout="row" ng-repeat="field in availableItem.fields track by $index">
+                                    <!--{{field.fieldValue}}-->
+                                    <span flex >{{field.fieldName}}</span>
+                                    <span flex >{{field.fieldValue}}</span>
+                                </span>
                             </span>
                         </div>
                         <!--/tr-->

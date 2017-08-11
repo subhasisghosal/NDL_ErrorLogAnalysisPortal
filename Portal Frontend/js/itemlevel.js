@@ -51,7 +51,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
     $scope.submitList = function() {
         //$http.post(){}
         $scope.getArray = []
-        if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'informationCode') {
+        if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName' || $scope.prevchoice === 'fieldValue') && $scope.selectedOption === 'informationCode') {
             //		if($scope.selectedList.length === 0 && $scope.selectedOption === 'informationCode'){
             $scope.showSpinner = true
             $scope.availableOptions = [];
@@ -78,7 +78,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
             responsePromise.error(function(data, status, headers, config) {
                 alert("AJAX failed!");
             });
-        } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'informationCode') && $scope.selectedOption === 'fieldName') {
+        } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'informationCode' || $scope.prevchoice === 'fieldValue') && $scope.selectedOption === 'fieldName') {
             //		} else if ($scope.selectedList.length === 0 && $scope.selectedOption === 'fieldName'){
             $scope.showSpinner = true
             $scope.availableOptions = [];
@@ -105,7 +105,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
             });
             $scope.leftListObtained = true;
 
-        } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName') && $scope.selectedOption === 'fieldValue') {
+        } else if (($scope.selectedList.length === 0 || $scope.prevchoice === 'fieldName' || $scope.prevchoice === 'informationCode') && $scope.selectedOption === 'fieldValue') {
             //		} else if ($scope.selectedList.length === 0 && $scope.selectedOption === 'fieldName'){
             $scope.showSpinner = true
             $scope.availableOptions = [];
@@ -248,7 +248,7 @@ logApp.controller('itemCtrl', function($rootScope, $scope, $timeout, $location, 
                 }
                 $scope.showBar = false
                 console.log($scope.availableItems);
-                $scope.getArray = $scope.availableItems
+                // $scope.getArray = $scope.availableItems
             });
             responsePromise.error(function(data, status, headers) {
                 alert("AJAX failed!");
